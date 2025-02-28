@@ -1,128 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.12.2 on darwin)" generated="2025-02-28T12:28:44.929001" rpa="false" schemaversion="5">
+<robot generator="Robot 7.1.1 (Python 3.12.2 on darwin)" generated="2025-02-28T13:05:25.574282" rpa="false" schemaversion="5">
 <suite id="s1" name="Avis Navigation" source="/Users/javiervillaltaceva/Avis_RobotFwk_Test/tests/avis_navigation.robot">
-<kw name="Open Browser" owner="SeleniumLibrary" type="SETUP">
-<msg time="2025-02-28T12:28:45.037857" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<kw name="Setup Browser" type="SETUP">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-02-28T13:05:25.673637" level="INFO">${unique_dir} = /tmp/chrome-user-data-e4d3c010-54ed-452e-b44f-4f3e4108f9f3</msg>
+<var>${unique_dir}</var>
+<arg>'/tmp/chrome-user-data-' + str(uuid.uuid4())</arg>
+<arg>uuid</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-02-28T13:05:25.673483" elapsed="0.000170"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-02-28T13:05:25.673817" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x102a284a0&gt;</msg>
+<var>${options}</var>
+<arg>selenium.webdriver.ChromeOptions()</arg>
+<arg>selenium</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-02-28T13:05:25.673725" elapsed="0.000104"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-02-28T13:05:25.673963" level="INFO">${options.add_argument} = --user-data-dir=/tmp/chrome-user-data-e4d3c010-54ed-452e-b44f-4f3e4108f9f3</msg>
+<var>${options.add_argument}</var>
+<arg>--user-data-dir=${unique_dir}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-02-28T13:05:25.673880" elapsed="0.000094"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-28T13:05:25.674121" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
 <arg>about:blank</arg>
 <arg>chrome</arg>
-<arg>options=add_argument("--user-data-dir=/tmp/chrome-user-data")</arg>
+<arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-02-28T12:28:45.037735" elapsed="5.217637"/>
+<status status="PASS" start="2025-02-28T13:05:25.674029" elapsed="3.769301"/>
 </kw>
-<test id="s1-t1" name="Should Successfully Search For A Car Rental" line="34">
+<status status="PASS" start="2025-02-28T13:05:25.673127" elapsed="3.770421"/>
+</kw>
+<test id="s1-t1" name="Should Successfully Search For A Car Rental" line="41">
 <kw name="Navigate To Avis" owner="AvisPage">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:50.257725" level="INFO">Opening url 'https://www.avis.es/'</msg>
+<msg time="2025-02-28T13:05:29.444456" level="INFO">Opening url 'https://www.avis.es/'</msg>
 <arg>${url}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-28T12:28:50.257580" elapsed="0.552278"/>
+<status status="PASS" start="2025-02-28T13:05:29.444367" elapsed="1.091944"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-02-28T12:28:50.810122" elapsed="0.002407"/>
+<status status="PASS" start="2025-02-28T13:05:30.536575" elapsed="0.376955"/>
 </kw>
 <arg>https://www.avis.es/</arg>
-<status status="PASS" start="2025-02-28T12:28:50.257282" elapsed="0.555353"/>
+<status status="PASS" start="2025-02-28T13:05:29.444168" elapsed="1.469487"/>
 </kw>
 <kw name="Accept Cookies" owner="AvisPage">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:51.132620" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-12.png"&gt;&lt;img src="selenium-screenshot-12.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-02-28T12:28:51.132763" level="FAIL">Page should have contained element 'id=consent_prompt_accept' but did not.</msg>
+<msg time="2025-02-28T13:05:30.927020" level="INFO">Current page contains element 'id=consent_prompt_accept'.</msg>
 <arg>id=consent_prompt_accept</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="FAIL" start="2025-02-28T12:28:50.814070" elapsed="0.322200">Page should have contained element 'id=consent_prompt_accept' but did not.</status>
+<status status="PASS" start="2025-02-28T13:05:30.914459" elapsed="0.012630"/>
 </kw>
-<msg time="2025-02-28T12:28:51.136376" level="INFO">${element_exists} = False</msg>
+<msg time="2025-02-28T13:05:30.927201" level="INFO">${element_exists} = True</msg>
 <var>${element_exists}</var>
 <arg>Page Should Contain Element</arg>
 <arg>id=consent_prompt_accept</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:50.813499" elapsed="0.322892"/>
+<status status="PASS" start="2025-02-28T13:05:30.914302" elapsed="0.012914"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.136616" level="INFO">Cookie accept button exists: False</msg>
+<msg time="2025-02-28T13:05:30.927449" level="INFO">Cookie accept button exists: True</msg>
 <arg>Cookie accept button exists: ${element_exists}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.136501" elapsed="0.000138"/>
+<status status="PASS" start="2025-02-28T13:05:30.927322" elapsed="0.000153"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//*[@id="consent_prompt_accept"]</arg>
+<arg>timeout=30s</arg>
+<arg>error=Cookie banner not found</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-28T13:05:30.927700" elapsed="0.018694"/>
+</kw>
 <arg>${element_exists}</arg>
 <arg>Wait Until Element Is Visible</arg>
 <arg>//*[@id="consent_prompt_accept"]</arg>
 <arg>timeout=30s</arg>
 <arg>error=Cookie banner not found</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.136920" elapsed="0.000106"/>
+<status status="PASS" start="2025-02-28T13:05:30.927557" elapsed="0.018924"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-28T13:05:30.946834" level="INFO">Clicking element '//*[@id="consent_prompt_accept"]'.</msg>
+<arg>//*[@id="consent_prompt_accept"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-28T13:05:30.946732" elapsed="0.077431"/>
+</kw>
 <arg>${element_exists}</arg>
 <arg>Click Element</arg>
 <arg>//*[@id="consent_prompt_accept"]</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.137089" elapsed="0.000070"/>
+<status status="PASS" start="2025-02-28T13:05:30.946590" elapsed="0.077657"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:50.812965" elapsed="0.324251"/>
+<status status="PASS" start="2025-02-28T13:05:30.913964" elapsed="0.110344"/>
 </kw>
 <kw name="Setup Dates and Times">
 <kw name="Set Day Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.138309" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:31.024959" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.138005" elapsed="0.000317"/>
+<status status="PASS" start="2025-02-28T13:05:31.024822" elapsed="0.000149"/>
 </kw>
 <kw name="Set Month Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.138901" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:31.025296" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.138820" elapsed="0.000092"/>
+<status status="PASS" start="2025-02-28T13:05:31.025111" elapsed="0.000196"/>
 </kw>
 <kw name="Subtract Time From Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.141349" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
+<msg time="2025-02-28T13:05:31.026578" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
 <var>${current_date}</var>
 <arg>${current_date}</arg>
 <arg>30 days</arg>
 <arg>date_format=%Y-%m-%d</arg>
 <doc>Subtracts time from date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.138959" elapsed="0.002414"/>
+<status status="PASS" start="2025-02-28T13:05:31.025352" elapsed="0.001240"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.143527" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:31.026973" level="INFO">${month} = 1</msg>
 <var>${month}</var>
 <arg>${current_date.split('-')[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.141464" elapsed="0.002128"/>
+<status status="PASS" start="2025-02-28T13:05:31.026645" elapsed="0.000340"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.144370" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:31.027123" level="INFO">${month} = 1</msg>
 <arg>${month}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.143768" elapsed="0.000954"/>
+<status status="PASS" start="2025-02-28T13:05:31.027037" elapsed="0.000102"/>
 </kw>
 <return>
 <value>${month}</value>
-<status status="PASS" start="2025-02-28T12:28:51.144774" elapsed="0.000048"/>
+<status status="PASS" start="2025-02-28T13:05:31.027164" elapsed="0.000052"/>
 </return>
-<msg time="2025-02-28T12:28:51.144911" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:31.027270" level="INFO">${month} = 1</msg>
 <var>${month}</var>
-<status status="PASS" start="2025-02-28T12:28:51.138389" elapsed="0.006535"/>
+<status status="PASS" start="2025-02-28T13:05:31.025032" elapsed="0.002247"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup'">
 <kw name="Add Time To Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.145826" level="INFO">${day} = 01</msg>
+<msg time="2025-02-28T13:05:31.027692" level="INFO">${day} = 01</msg>
 <var>${day}</var>
 <arg>${current_date}</arg>
 <arg>1 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.145188" elapsed="0.000656"/>
+<status status="PASS" start="2025-02-28T13:05:31.027405" elapsed="0.000298"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:51.144989" elapsed="0.000972"/>
+<status status="PASS" start="2025-02-28T13:05:31.027319" elapsed="0.000406"/>
 </branch>
 <branch type="ELSE">
 <kw name="Add Time To Date" owner="DateTime">
@@ -131,105 +169,105 @@
 <arg>2 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:51.146119" elapsed="0.000056"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.027791" elapsed="0.000011"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:51.146035" elapsed="0.000251"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.027746" elapsed="0.000135"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:51.144972" elapsed="0.001494"/>
+<status status="PASS" start="2025-02-28T13:05:31.027308" elapsed="0.000589"/>
 </if>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.146657" level="INFO">01</msg>
+<msg time="2025-02-28T13:05:31.027984" level="INFO">01</msg>
 <arg>${day}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.146572" elapsed="0.000108"/>
+<status status="PASS" start="2025-02-28T13:05:31.027935" elapsed="0.000066"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.146775" level="INFO">1</msg>
+<msg time="2025-02-28T13:05:31.028084" level="INFO">1</msg>
 <arg>${month}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.146726" elapsed="0.000066"/>
+<status status="PASS" start="2025-02-28T13:05:31.028040" elapsed="0.000059"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.146909" level="INFO">${day} = 1</msg>
+<msg time="2025-02-28T13:05:31.028196" level="INFO">${day} = 1</msg>
 <var>${day}</var>
 <arg>${day}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.146837" elapsed="0.000082"/>
+<status status="PASS" start="2025-02-28T13:05:31.028134" elapsed="0.000079"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.147040" level="INFO">${day} = 1</msg>
+<msg time="2025-02-28T13:05:31.028321" level="INFO">${day} = 1</msg>
 <arg>${day}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.146965" elapsed="0.000091"/>
+<status status="PASS" start="2025-02-28T13:05:31.028258" elapsed="0.000079"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.147209" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
+<msg time="2025-02-28T13:05:31.028476" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
 <arg>@{PICKUP_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.147098" elapsed="0.000184"/>
+<status status="PASS" start="2025-02-28T13:05:31.028377" elapsed="0.000115"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.147432" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
+<msg time="2025-02-28T13:05:31.028631" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
 <arg>@{DROPOFF_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.147331" elapsed="0.000118"/>
+<status status="PASS" start="2025-02-28T13:05:31.028535" elapsed="0.000121"/>
 </kw>
 <return>
 <value>${day}</value>
-<status status="PASS" start="2025-02-28T12:28:51.147474" elapsed="0.000026"/>
+<status status="PASS" start="2025-02-28T13:05:31.028679" elapsed="0.000018"/>
 </return>
-<msg time="2025-02-28T12:28:51.147558" level="INFO">${pickup_date} = 1</msg>
+<msg time="2025-02-28T13:05:31.028747" level="INFO">${pickup_date} = 1</msg>
 <var>${pickup_date}</var>
 <arg>pickup</arg>
-<status status="PASS" start="2025-02-28T12:28:51.137898" elapsed="0.009670"/>
+<status status="PASS" start="2025-02-28T13:05:31.024711" elapsed="0.004045"/>
 </kw>
 <kw name="Set Day Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.148764" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:31.029079" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.148350" elapsed="0.000433"/>
+<status status="PASS" start="2025-02-28T13:05:31.028998" elapsed="0.000093"/>
 </kw>
 <kw name="Set Month Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.149184" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:31.029319" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.149094" elapsed="0.000101"/>
+<status status="PASS" start="2025-02-28T13:05:31.029247" elapsed="0.000083"/>
 </kw>
 <kw name="Subtract Time From Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.149374" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
+<msg time="2025-02-28T13:05:31.029500" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
 <var>${current_date}</var>
 <arg>${current_date}</arg>
 <arg>30 days</arg>
 <arg>date_format=%Y-%m-%d</arg>
 <doc>Subtracts time from date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.149241" elapsed="0.000143"/>
+<status status="PASS" start="2025-02-28T13:05:31.029375" elapsed="0.000136"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.149717" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:31.030026" level="INFO">${month} = 1</msg>
 <var>${month}</var>
 <arg>${current_date.split('-')[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.149434" elapsed="0.000294"/>
+<status status="PASS" start="2025-02-28T13:05:31.029558" elapsed="0.000709"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.149851" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:31.030814" level="INFO">${month} = 1</msg>
 <arg>${month}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.149777" elapsed="0.000091"/>
+<status status="PASS" start="2025-02-28T13:05:31.030515" elapsed="0.000331"/>
 </kw>
 <return>
 <value>${month}</value>
-<status status="PASS" start="2025-02-28T12:28:51.149891" elapsed="0.000024"/>
+<status status="PASS" start="2025-02-28T13:05:31.030882" elapsed="0.000037"/>
 </return>
-<msg time="2025-02-28T12:28:51.149964" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:31.030988" level="INFO">${month} = 1</msg>
 <var>${month}</var>
-<status status="PASS" start="2025-02-28T12:28:51.148954" elapsed="0.001019"/>
+<status status="PASS" start="2025-02-28T13:05:31.029164" elapsed="0.001835"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup'">
@@ -239,588 +277,588 @@
 <arg>1 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:51.150088" elapsed="0.000012"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.031272" elapsed="0.000015"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:51.150012" elapsed="0.000109"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.031048" elapsed="0.000264"/>
 </branch>
 <branch type="ELSE">
 <kw name="Add Time To Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.150350" level="INFO">${day} = 02</msg>
+<msg time="2025-02-28T13:05:31.031598" level="INFO">${day} = 02</msg>
 <var>${day}</var>
 <arg>${current_date}</arg>
 <arg>2 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.150172" elapsed="0.000191"/>
+<status status="PASS" start="2025-02-28T13:05:31.031375" elapsed="0.000247"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:51.150137" elapsed="0.000252"/>
+<status status="PASS" start="2025-02-28T13:05:31.031330" elapsed="0.000329"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:51.150001" elapsed="0.000405"/>
+<status status="PASS" start="2025-02-28T13:05:31.031035" elapsed="0.000650"/>
 </if>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.150510" level="INFO">02</msg>
+<msg time="2025-02-28T13:05:31.031792" level="INFO">02</msg>
 <arg>${day}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.150454" elapsed="0.000074"/>
+<status status="PASS" start="2025-02-28T13:05:31.031734" elapsed="0.000082"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.150616" level="INFO">1</msg>
+<msg time="2025-02-28T13:05:31.031902" level="INFO">1</msg>
 <arg>${month}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.150572" elapsed="0.000059"/>
+<status status="PASS" start="2025-02-28T13:05:31.031857" elapsed="0.000067"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.150734" level="INFO">${day} = 2</msg>
+<msg time="2025-02-28T13:05:31.032040" level="INFO">${day} = 2</msg>
 <var>${day}</var>
 <arg>${day}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.150671" elapsed="0.000077"/>
+<status status="PASS" start="2025-02-28T13:05:31.031968" elapsed="0.000083"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.150857" level="INFO">${day} = 2</msg>
+<msg time="2025-02-28T13:05:31.032174" level="INFO">${day} = 2</msg>
 <arg>${day}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.150793" elapsed="0.000078"/>
+<status status="PASS" start="2025-02-28T13:05:31.032098" elapsed="0.000091"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.151010" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
+<msg time="2025-02-28T13:05:31.032338" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
 <arg>@{PICKUP_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.150911" elapsed="0.000115"/>
+<status status="PASS" start="2025-02-28T13:05:31.032238" elapsed="0.000120"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.151162" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
+<msg time="2025-02-28T13:05:31.032822" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
 <arg>@{DROPOFF_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.151069" elapsed="0.000109"/>
+<status status="PASS" start="2025-02-28T13:05:31.032403" elapsed="0.000449"/>
 </kw>
 <return>
 <value>${day}</value>
-<status status="PASS" start="2025-02-28T12:28:51.151200" elapsed="0.000017"/>
+<status status="PASS" start="2025-02-28T13:05:31.032919" elapsed="0.000027"/>
 </return>
-<msg time="2025-02-28T12:28:51.151326" level="INFO">${dropoff_date} = 2</msg>
+<msg time="2025-02-28T13:05:31.033017" level="INFO">${dropoff_date} = 2</msg>
 <var>${dropoff_date}</var>
 <arg>dropoff</arg>
-<status status="PASS" start="2025-02-28T12:28:51.147886" elapsed="0.003453"/>
+<status status="PASS" start="2025-02-28T13:05:31.028875" elapsed="0.004153"/>
 </kw>
 <kw name="Set Time Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.151595" level="INFO">${current_time} = 12:28</msg>
+<msg time="2025-02-28T13:05:31.033526" level="INFO">${current_time} = 13:05</msg>
 <var>${current_time}</var>
 <arg>result_format=%H:%M</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.151526" elapsed="0.000079"/>
+<status status="PASS" start="2025-02-28T13:05:31.033420" elapsed="0.000117"/>
 </kw>
 <kw name="Format Time" owner="AvisPage">
 <kw name="Split String" owner="String">
-<msg time="2025-02-28T12:28:51.151933" level="INFO">${time_parts} = ['12', '28']</msg>
+<msg time="2025-02-28T13:05:31.033898" level="INFO">${time_parts} = ['13', '05']</msg>
 <var>${time_parts}</var>
 <arg>${time}</arg>
 <arg>:</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.151865" elapsed="0.000079"/>
+<status status="PASS" start="2025-02-28T13:05:31.033831" elapsed="0.000079"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.152260" level="INFO">${hour} = 12</msg>
+<msg time="2025-02-28T13:05:31.034275" level="INFO">${hour} = 13</msg>
 <var>${hour}</var>
 <arg>${time_parts[0]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.151988" elapsed="0.000283"/>
+<status status="PASS" start="2025-02-28T13:05:31.033955" elapsed="0.000330"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.152588" level="INFO">${minute} = 28</msg>
+<msg time="2025-02-28T13:05:31.034561" level="INFO">${minute} = 5</msg>
 <var>${minute}</var>
 <arg>${time_parts[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.152343" elapsed="0.000256"/>
+<status status="PASS" start="2025-02-28T13:05:31.034327" elapsed="0.000244"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>${hour} &lt; 0 or ${hour} &gt; 23 or ${minute} &lt; 0 or ${minute} &gt; 59</arg>
 <arg>Fail</arg>
 <arg>Invalid time format: ${time}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.152647" elapsed="0.000153"/>
+<status status="PASS" start="2025-02-28T13:05:31.034618" elapsed="0.000093"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.152959" level="INFO">${formatted_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.034807" level="INFO">${formatted_time} = 13:00</msg>
 <var>${formatted_time}</var>
 <arg>${hour}:00</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.152871" elapsed="0.000101"/>
+<status status="PASS" start="2025-02-28T13:05:31.034755" elapsed="0.000062"/>
 </kw>
 <return>
 <value>${formatted_time}</value>
-<status status="PASS" start="2025-02-28T12:28:51.152998" elapsed="0.000019"/>
+<status status="PASS" start="2025-02-28T13:05:31.034840" elapsed="0.000019"/>
 </return>
-<msg time="2025-02-28T12:28:51.153071" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.034909" level="INFO">${time} = 13:00</msg>
 <var>${time}</var>
 <arg>${current_time}</arg>
-<status status="PASS" start="2025-02-28T12:28:51.151665" elapsed="0.001417"/>
+<status status="PASS" start="2025-02-28T13:05:31.033615" elapsed="0.001303"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.153208" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.035028" level="INFO">${time} = 13:00</msg>
 <arg>${time}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.153136" elapsed="0.000088"/>
+<status status="PASS" start="2025-02-28T13:05:31.034963" elapsed="0.000080"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.153349" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:31.035159" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${PICKUP_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.153270" elapsed="0.000096"/>
+<status status="PASS" start="2025-02-28T13:05:31.035085" elapsed="0.000088"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.153485" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:31.035286" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${DROPOFF_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.153412" elapsed="0.000089"/>
+<status status="PASS" start="2025-02-28T13:05:31.035214" elapsed="0.000086"/>
 </kw>
 <return>
 <value>${time}</value>
-<status status="PASS" start="2025-02-28T12:28:51.153523" elapsed="0.000016"/>
+<status status="PASS" start="2025-02-28T13:05:31.035320" elapsed="0.000013"/>
 </return>
-<msg time="2025-02-28T12:28:51.153584" level="INFO">${pickup_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.035377" level="INFO">${pickup_time} = 13:00</msg>
 <var>${pickup_time}</var>
-<status status="PASS" start="2025-02-28T12:28:51.151440" elapsed="0.002153"/>
+<status status="PASS" start="2025-02-28T13:05:31.033213" elapsed="0.002173"/>
 </kw>
 <kw name="Set Time Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:51.153833" level="INFO">${current_time} = 12:28</msg>
+<msg time="2025-02-28T13:05:31.035602" level="INFO">${current_time} = 13:05</msg>
 <var>${current_time}</var>
 <arg>result_format=%H:%M</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.153751" elapsed="0.000092"/>
+<status status="PASS" start="2025-02-28T13:05:31.035531" elapsed="0.000081"/>
 </kw>
 <kw name="Format Time" owner="AvisPage">
 <kw name="Split String" owner="String">
-<msg time="2025-02-28T12:28:51.154143" level="INFO">${time_parts} = ['12', '28']</msg>
+<msg time="2025-02-28T13:05:31.035826" level="INFO">${time_parts} = ['13', '05']</msg>
 <var>${time_parts}</var>
 <arg>${time}</arg>
 <arg>:</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.154067" elapsed="0.000089"/>
+<status status="PASS" start="2025-02-28T13:05:31.035767" elapsed="0.000069"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.154500" level="INFO">${hour} = 12</msg>
+<msg time="2025-02-28T13:05:31.036142" level="INFO">${hour} = 13</msg>
 <var>${hour}</var>
 <arg>${time_parts[0]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.154209" elapsed="0.000303"/>
+<status status="PASS" start="2025-02-28T13:05:31.035878" elapsed="0.000274"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.154816" level="INFO">${minute} = 28</msg>
+<msg time="2025-02-28T13:05:31.036429" level="INFO">${minute} = 5</msg>
 <var>${minute}</var>
 <arg>${time_parts[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.154561" elapsed="0.000267"/>
+<status status="PASS" start="2025-02-28T13:05:31.036193" elapsed="0.000246"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>${hour} &lt; 0 or ${hour} &gt; 23 or ${minute} &lt; 0 or ${minute} &gt; 59</arg>
 <arg>Fail</arg>
 <arg>Invalid time format: ${time}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.154879" elapsed="0.000094"/>
+<status status="PASS" start="2025-02-28T13:05:31.036485" elapsed="0.000084"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.155078" level="INFO">${formatted_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.036665" level="INFO">${formatted_time} = 13:00</msg>
 <var>${formatted_time}</var>
 <arg>${hour}:00</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.155022" elapsed="0.000067"/>
+<status status="PASS" start="2025-02-28T13:05:31.036614" elapsed="0.000061"/>
 </kw>
 <return>
 <value>${formatted_time}</value>
-<status status="PASS" start="2025-02-28T12:28:51.155112" elapsed="0.000019"/>
+<status status="PASS" start="2025-02-28T13:05:31.036696" elapsed="0.000014"/>
 </return>
-<msg time="2025-02-28T12:28:51.155181" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.036753" level="INFO">${time} = 13:00</msg>
 <var>${time}</var>
 <arg>${current_time}</arg>
-<status status="PASS" start="2025-02-28T12:28:51.153906" elapsed="0.001284"/>
+<status status="PASS" start="2025-02-28T13:05:31.035670" elapsed="0.001091"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.155302" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.036859" level="INFO">${time} = 13:00</msg>
 <arg>${time}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.155237" elapsed="0.000081"/>
+<status status="PASS" start="2025-02-28T13:05:31.036802" elapsed="0.000071"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.155434" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:31.036977" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${PICKUP_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.155361" elapsed="0.000088"/>
+<status status="PASS" start="2025-02-28T13:05:31.036911" elapsed="0.000079"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.155564" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:31.037095" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${DROPOFF_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.155490" elapsed="0.000089"/>
+<status status="PASS" start="2025-02-28T13:05:31.037028" elapsed="0.000080"/>
 </kw>
 <return>
 <value>${time}</value>
-<status status="PASS" start="2025-02-28T12:28:51.155600" elapsed="0.000015"/>
+<status status="PASS" start="2025-02-28T13:05:31.037177" elapsed="0.000013"/>
 </return>
-<msg time="2025-02-28T12:28:51.155662" level="INFO">${dropoff_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.037232" level="INFO">${dropoff_time} = 13:00</msg>
 <var>${dropoff_time}</var>
-<status status="PASS" start="2025-02-28T12:28:51.153662" elapsed="0.002009"/>
+<status status="PASS" start="2025-02-28T13:05:31.035449" elapsed="0.001791"/>
 </kw>
 <return>
 <value>${pickup_date}</value>
 <value>${dropoff_date}</value>
 <value>${pickup_time}</value>
 <value>${dropoff_time}</value>
-<status status="PASS" start="2025-02-28T12:28:51.155690" elapsed="0.000012"/>
+<status status="PASS" start="2025-02-28T13:05:31.037257" elapsed="0.000011"/>
 </return>
-<msg time="2025-02-28T12:28:51.155785" level="INFO">${pickup_date} = 1</msg>
-<msg time="2025-02-28T12:28:51.155800" level="INFO">${dropoff_date} = 2</msg>
-<msg time="2025-02-28T12:28:51.155813" level="INFO">${pickup_time} = 12:00</msg>
-<msg time="2025-02-28T12:28:51.155825" level="INFO">${dropoff_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:31.037344" level="INFO">${pickup_date} = 1</msg>
+<msg time="2025-02-28T13:05:31.037358" level="INFO">${dropoff_date} = 2</msg>
+<msg time="2025-02-28T13:05:31.037370" level="INFO">${pickup_time} = 13:00</msg>
+<msg time="2025-02-28T13:05:31.037381" level="INFO">${dropoff_time} = 13:00</msg>
 <var>${pickup_date}</var>
 <var>${dropoff_date}</var>
 <var>${pickup_time}</var>
 <var>${dropoff_time}</var>
-<status status="PASS" start="2025-02-28T12:28:51.137663" elapsed="0.018171"/>
+<status status="PASS" start="2025-02-28T13:05:31.024513" elapsed="0.012876"/>
 </kw>
 <kw name="Perform Complete Search" owner="AvisPage">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.156246" level="INFO">Performing search for vehicle type: CAR</msg>
+<msg time="2025-02-28T13:05:31.037714" level="INFO">Performing search for vehicle type: CAR</msg>
 <arg>Performing search for vehicle type: ${vehicle_type}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.156195" elapsed="0.000068"/>
+<status status="PASS" start="2025-02-28T13:05:31.037672" elapsed="0.000058"/>
 </kw>
 <if>
 <branch type="IF" condition="'${vehicle_type}' == 'VAN'">
 <kw name="Log" owner="BuiltIn">
 <arg>Targeting van radio button: ${RBTN_VAN}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:51.156367" elapsed="0.000011"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.037827" elapsed="0.000009"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${RBTN_VAN}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:51.156471" elapsed="0.000012"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.037876" elapsed="0.000009"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
 <arg>${RBTN_VAN}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:51.156532" elapsed="0.000010"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.037922" elapsed="0.000008"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:51.156297" elapsed="0.000259"/>
+<status status="NOT RUN" start="2025-02-28T13:05:31.037764" elapsed="0.000180"/>
 </branch>
 <branch type="ELSE IF" condition="'${vehicle_type}' == 'CAR'">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.156684" level="INFO">Targeting car radio button: //label[@for='fleet-car']</msg>
+<msg time="2025-02-28T13:05:31.038054" level="INFO">Targeting car radio button: //label[@for='fleet-car']</msg>
 <arg>Targeting car radio button: ${RBTN_CAR}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.156636" elapsed="0.000065"/>
+<status status="PASS" start="2025-02-28T13:05:31.038014" elapsed="0.000056"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${RBTN_CAR}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.156740" elapsed="0.019184"/>
+<status status="PASS" start="2025-02-28T13:05:31.038106" elapsed="0.745799"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:51.176163" level="INFO">Clicking element '//label[@for='fleet-car']'.</msg>
+<msg time="2025-02-28T13:05:31.784223" level="INFO">Clicking element '//label[@for='fleet-car']'.</msg>
 <arg>${RBTN_CAR}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.176034" elapsed="0.084190"/>
+<status status="PASS" start="2025-02-28T13:05:31.784065" elapsed="0.043351"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:51.156573" elapsed="0.103704"/>
+<status status="PASS" start="2025-02-28T13:05:31.037960" elapsed="0.789512"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:51.156289" elapsed="0.104013"/>
+<status status="PASS" start="2025-02-28T13:05:31.037754" elapsed="0.789746"/>
 </if>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:51.260508" level="INFO">Clicking element 'xpath=//label[@for='trigger-return-location']'.</msg>
+<msg time="2025-02-28T13:05:31.827714" level="INFO">Clicking element 'xpath=//label[@for='trigger-return-location']'.</msg>
 <arg>${CHECK_DIFFERENT_RETURN}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.260380" elapsed="0.063347"/>
+<status status="PASS" start="2025-02-28T13:05:31.827581" elapsed="0.045863"/>
 </kw>
 <kw name="Set Location" owner="AvisPage">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.324093" elapsed="0.009297"/>
+<status status="PASS" start="2025-02-28T13:05:31.873962" elapsed="0.008345"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.333493" elapsed="0.016994"/>
+<status status="PASS" start="2025-02-28T13:05:31.882414" elapsed="0.016007"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_OFFICE}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.350605" elapsed="0.007251"/>
+<status status="PASS" start="2025-02-28T13:05:31.898534" elapsed="0.007314"/>
 </kw>
 <kw name="Create List" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.358042" level="INFO">@{location_list} = [ Madrid Aeropuerto ]</msg>
+<msg time="2025-02-28T13:05:31.906037" level="INFO">@{location_list} = [ Madrid Aeropuerto ]</msg>
 <var>@{location_list}</var>
 <arg>${location}</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.357949" elapsed="0.000105"/>
+<status status="PASS" start="2025-02-28T13:05:31.905939" elapsed="0.000111"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:51.358333" level="INFO">Typing text 'Madrid Aeropuerto' into text field 'id=hire-search'.</msg>
+<msg time="2025-02-28T13:05:31.906318" level="INFO">Typing text 'Madrid Aeropuerto' into text field 'id=hire-search'.</msg>
 <arg>${field_locator}</arg>
 <arg>${char}</arg>
 <arg>append=True</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.358237" elapsed="0.151941"/>
+<status status="PASS" start="2025-02-28T13:05:31.906220" elapsed="0.204020"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:28:51.811130" level="INFO">Slept 300 milliseconds.</msg>
+<msg time="2025-02-28T13:05:32.412270" level="INFO">Slept 300 milliseconds.</msg>
 <arg>0.3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.510474" elapsed="0.300889"/>
+<status status="PASS" start="2025-02-28T13:05:32.110354" elapsed="0.302120"/>
 </kw>
 <var name="${char}">Madrid Aeropuerto</var>
-<status status="PASS" start="2025-02-28T12:28:51.358189" elapsed="0.453356"/>
+<status status="PASS" start="2025-02-28T13:05:31.906172" elapsed="0.506433"/>
 </iter>
 <var>${char}</var>
 <value>@{location_list}</value>
-<status status="PASS" start="2025-02-28T12:28:51.358098" elapsed="0.453611"/>
+<status status="PASS" start="2025-02-28T13:05:31.906086" elapsed="0.506626"/>
 </for>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:28:52.813006" level="INFO">Slept 1 second.</msg>
+<msg time="2025-02-28T13:05:33.415005" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:28:51.811904" elapsed="1.001208"/>
+<status status="PASS" start="2025-02-28T13:05:32.412962" elapsed="1.002705"/>
 </kw>
 <kw name="Press Keys" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:52.814371" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=hire-search element.</msg>
-<msg time="2025-02-28T12:28:53.088014" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
-<msg time="2025-02-28T12:28:53.088128" level="INFO">Releasing special key ARROW_DOWN.</msg>
-<msg time="2025-02-28T12:28:53.096264" level="INFO">Pressing special key RETURN to element.</msg>
-<msg time="2025-02-28T12:28:53.096360" level="INFO">Releasing special key RETURN.</msg>
+<msg time="2025-02-28T13:05:33.418259" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=hire-search element.</msg>
+<msg time="2025-02-28T13:05:33.706884" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg time="2025-02-28T13:05:33.707028" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg time="2025-02-28T13:05:33.715185" level="INFO">Pressing special key RETURN to element.</msg>
+<msg time="2025-02-28T13:05:33.715270" level="INFO">Releasing special key RETURN.</msg>
 <arg>${field_locator}</arg>
 <arg>ARROW_DOWN</arg>
 <arg>RETURN</arg>
 <doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<status status="PASS" start="2025-02-28T12:28:52.813290" elapsed="0.318704"/>
+<status status="PASS" start="2025-02-28T13:05:33.416528" elapsed="0.336792"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.132230" elapsed="0.026443"/>
+<status status="PASS" start="2025-02-28T13:05:33.753523" elapsed="0.020683"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.158810" elapsed="0.006630"/>
+<status status="PASS" start="2025-02-28T13:05:33.774326" elapsed="0.007062"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.165663" elapsed="0.008611"/>
+<status status="PASS" start="2025-02-28T13:05:33.781626" elapsed="0.009228"/>
 </kw>
-<msg time="2025-02-28T12:28:53.174360" level="INFO">${pickup_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:33.790951" level="INFO">${pickup_suggestions_interactable} = True</msg>
 <var>${pickup_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.165558" elapsed="0.008815"/>
+<status status="PASS" start="2025-02-28T13:05:33.781519" elapsed="0.009447"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.174552" elapsed="0.008538"/>
+<status status="PASS" start="2025-02-28T13:05:33.791198" elapsed="0.008011"/>
 </kw>
-<msg time="2025-02-28T12:28:53.183327" level="INFO">${dropoff_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:33.799299" level="INFO">${dropoff_suggestions_interactable} = True</msg>
 <var>${dropoff_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.174462" elapsed="0.008885"/>
+<status status="PASS" start="2025-02-28T13:05:33.791109" elapsed="0.008204"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup' and ${pickup_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:53.184005" level="INFO">Clicking element 'css=.booking-widget__results__item:first-child .booking-widget__results__link'.</msg>
+<msg time="2025-02-28T13:05:33.799669" level="INFO">Clicking element 'css=.booking-widget__results__item:first-child .booking-widget__results__link'.</msg>
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.183679" elapsed="0.072065"/>
+<status status="PASS" start="2025-02-28T13:05:33.799550" elapsed="0.089743"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:53.183425" elapsed="0.072376"/>
+<status status="PASS" start="2025-02-28T13:05:33.799379" elapsed="0.089992"/>
 </branch>
 <branch type="ELSE IF" condition="'${type}' == 'dropoff' and ${dropoff_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:53.255918" elapsed="0.000015"/>
+<status status="NOT RUN" start="2025-02-28T13:05:33.889508" elapsed="0.000016"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:53.255829" elapsed="0.000158"/>
+<status status="NOT RUN" start="2025-02-28T13:05:33.889406" elapsed="0.000137"/>
 </branch>
 <branch type="ELSE">
 <kw name="Log" owner="BuiltIn">
 <arg>Invalid location type specified or element not interactable: ${type}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:53.256051" elapsed="0.000011"/>
+<status status="NOT RUN" start="2025-02-28T13:05:33.889605" elapsed="0.000011"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:53.256005" elapsed="0.000073"/>
+<status status="NOT RUN" start="2025-02-28T13:05:33.889559" elapsed="0.000074"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:53.183407" elapsed="0.072685"/>
+<status status="PASS" start="2025-02-28T13:05:33.799360" elapsed="0.090287"/>
 </if>
 <arg>${PICKUP_OFFICE}</arg>
 <arg>${pickup_location}</arg>
 <arg>pickup</arg>
-<status status="PASS" start="2025-02-28T12:28:51.323923" elapsed="1.932199"/>
+<status status="PASS" start="2025-02-28T13:05:31.873763" elapsed="2.015919"/>
 </kw>
 <kw name="Set Location" owner="AvisPage">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.256417" elapsed="0.006102"/>
+<status status="PASS" start="2025-02-28T13:05:33.889987" elapsed="0.005673"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.262617" elapsed="0.017524"/>
+<status status="PASS" start="2025-02-28T13:05:33.895766" elapsed="0.012592"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_OFFICE}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.280250" elapsed="0.005059"/>
+<status status="PASS" start="2025-02-28T13:05:33.908467" elapsed="0.009745"/>
 </kw>
 <kw name="Create List" owner="BuiltIn">
-<msg time="2025-02-28T12:28:53.285486" level="INFO">@{location_list} = [ Barcelona Aeropuerto ]</msg>
+<msg time="2025-02-28T13:05:33.918428" level="INFO">@{location_list} = [ Barcelona Aeropuerto ]</msg>
 <var>@{location_list}</var>
 <arg>${location}</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.285391" elapsed="0.000107"/>
+<status status="PASS" start="2025-02-28T13:05:33.918321" elapsed="0.000120"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:53.285745" level="INFO">Typing text 'Barcelona Aeropuerto' into text field 'id=return-search'.</msg>
+<msg time="2025-02-28T13:05:33.918695" level="INFO">Typing text 'Barcelona Aeropuerto' into text field 'id=return-search'.</msg>
 <arg>${field_locator}</arg>
 <arg>${char}</arg>
 <arg>append=True</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.285647" elapsed="0.064054"/>
+<status status="PASS" start="2025-02-28T13:05:33.918595" elapsed="0.065659"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:28:53.651314" level="INFO">Slept 300 milliseconds.</msg>
+<msg time="2025-02-28T13:05:34.285023" level="INFO">Slept 300 milliseconds.</msg>
 <arg>0.3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.349824" elapsed="0.301886"/>
+<status status="PASS" start="2025-02-28T13:05:33.984358" elapsed="0.301073"/>
 </kw>
 <var name="${char}">Barcelona Aeropuerto</var>
-<status status="PASS" start="2025-02-28T12:28:53.285603" elapsed="0.366273"/>
+<status status="PASS" start="2025-02-28T13:05:33.918550" elapsed="0.367081"/>
 </iter>
 <var>${char}</var>
 <value>@{location_list}</value>
-<status status="PASS" start="2025-02-28T12:28:53.285535" elapsed="0.366524"/>
+<status status="PASS" start="2025-02-28T13:05:33.918478" elapsed="0.367329"/>
 </for>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:28:54.654708" level="INFO">Slept 1 second.</msg>
+<msg time="2025-02-28T13:05:35.286813" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:28:53.652466" elapsed="1.002650"/>
+<status status="PASS" start="2025-02-28T13:05:34.286232" elapsed="1.000943"/>
 </kw>
 <kw name="Press Keys" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:54.657415" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=return-search element.</msg>
-<msg time="2025-02-28T12:28:54.937057" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
-<msg time="2025-02-28T12:28:54.937238" level="INFO">Releasing special key ARROW_DOWN.</msg>
-<msg time="2025-02-28T12:28:54.943787" level="INFO">Pressing special key RETURN to element.</msg>
-<msg time="2025-02-28T12:28:54.943873" level="INFO">Releasing special key RETURN.</msg>
+<msg time="2025-02-28T13:05:35.289563" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=return-search element.</msg>
+<msg time="2025-02-28T13:05:35.573253" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg time="2025-02-28T13:05:35.573355" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg time="2025-02-28T13:05:35.581472" level="INFO">Pressing special key RETURN to element.</msg>
+<msg time="2025-02-28T13:05:35.581567" level="INFO">Releasing special key RETURN.</msg>
 <arg>${field_locator}</arg>
 <arg>ARROW_DOWN</arg>
 <arg>RETURN</arg>
 <doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<status status="PASS" start="2025-02-28T12:28:54.655781" elapsed="0.312361"/>
+<status status="PASS" start="2025-02-28T13:05:35.288362" elapsed="0.323264"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:54.968438" elapsed="0.009433"/>
+<status status="PASS" start="2025-02-28T13:05:35.611797" elapsed="0.009855"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:54.978029" elapsed="0.028913"/>
+<status status="PASS" start="2025-02-28T13:05:35.621792" elapsed="0.007609"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:28:55.007428" elapsed="0.012556"/>
+<status status="PASS" start="2025-02-28T13:05:35.629646" elapsed="0.009457"/>
 </kw>
-<msg time="2025-02-28T12:28:55.020072" level="INFO">${pickup_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:35.639186" level="INFO">${pickup_suggestions_interactable} = True</msg>
 <var>${pickup_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:55.007263" elapsed="0.012822"/>
+<status status="PASS" start="2025-02-28T13:05:35.629531" elapsed="0.009672"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:28:55.020254" elapsed="0.007271"/>
+<status status="PASS" start="2025-02-28T13:05:35.639379" elapsed="0.008676"/>
 </kw>
-<msg time="2025-02-28T12:28:55.027592" level="INFO">${dropoff_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:35.648122" level="INFO">${dropoff_suggestions_interactable} = True</msg>
 <var>${dropoff_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:55.020169" elapsed="0.007436"/>
+<status status="PASS" start="2025-02-28T13:05:35.639289" elapsed="0.008846"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup' and ${pickup_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:55.027813" elapsed="0.000014"/>
+<status status="NOT RUN" start="2025-02-28T13:05:35.648341" elapsed="0.000014"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:55.027656" elapsed="0.000189"/>
+<status status="NOT RUN" start="2025-02-28T13:05:35.648185" elapsed="0.000190"/>
 </branch>
 <branch type="ELSE IF" condition="'${type}' == 'dropoff' and ${dropoff_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:55.028029" level="INFO">Clicking element 'css=.booking-widget__results__item:first-child .booking-widget__results__link'.</msg>
+<msg time="2025-02-28T13:05:35.648570" level="INFO">Clicking element 'css=.booking-widget__results__item:first-child .booking-widget__results__link'.</msg>
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:55.027942" elapsed="0.056942"/>
+<status status="PASS" start="2025-02-28T13:05:35.648482" elapsed="0.079696"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:55.027863" elapsed="0.057072"/>
+<status status="PASS" start="2025-02-28T13:05:35.648394" elapsed="0.079836"/>
 </branch>
 <branch type="ELSE">
 <kw name="Log" owner="BuiltIn">
 <arg>Invalid location type specified or element not interactable: ${type}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:55.085041" elapsed="0.000015"/>
+<status status="NOT RUN" start="2025-02-28T13:05:35.728340" elapsed="0.000015"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:55.084961" elapsed="0.000113"/>
+<status status="NOT RUN" start="2025-02-28T13:05:35.728257" elapsed="0.000116"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:55.027644" elapsed="0.057445"/>
+<status status="PASS" start="2025-02-28T13:05:35.648172" elapsed="0.080216"/>
 </if>
 <arg>${DROPOFF_OFFICE}</arg>
 <arg>${dropoff_location}</arg>
 <arg>dropoff</arg>
-<status status="PASS" start="2025-02-28T12:28:53.256255" elapsed="1.828864"/>
+<status status="PASS" start="2025-02-28T13:05:33.889821" elapsed="1.838596"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:55.085284" level="INFO">Clicking element '//*[@id="getAQuote"]/div[7]/button'.</msg>
+<msg time="2025-02-28T13:05:35.728592" level="INFO">Clicking element '//*[@id="getAQuote"]/div[7]/button'.</msg>
 <arg>${SEARCH_BUTTON}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:55.085170" elapsed="2.177257"/>
+<status status="PASS" start="2025-02-28T13:05:35.728470" elapsed="2.667146"/>
 </kw>
 <arg>Madrid Aeropuerto</arg>
 <arg>Barcelona Aeropuerto</arg>
@@ -829,47 +867,47 @@
 <arg>${pickup_time}</arg>
 <arg>${dropoff_time}</arg>
 <arg>CAR</arg>
-<status status="PASS" start="2025-02-28T12:28:51.155971" elapsed="6.106570"/>
+<status status="PASS" start="2025-02-28T13:05:31.037522" elapsed="7.358661"/>
 </kw>
 <doc>Tests the car rental search functionality</doc>
-<status status="PASS" start="2025-02-28T12:28:50.256307" elapsed="7.006895"/>
+<status status="PASS" start="2025-02-28T13:05:29.443682" elapsed="8.953415"/>
 </test>
-<test id="s1-t2" name="Should Successfully Search For A Van Rental" line="42">
+<test id="s1-t2" name="Should Successfully Search For A Van Rental" line="49">
 <kw name="Navigate To Avis" owner="AvisPage">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:57.267890" level="INFO">Opening url 'https://www.avis.es/'</msg>
+<msg time="2025-02-28T13:05:38.398171" level="INFO">Opening url 'https://www.avis.es/'</msg>
 <arg>${url}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.266146" elapsed="0.289335"/>
+<status status="PASS" start="2025-02-28T13:05:38.398064" elapsed="0.339688"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.555928" elapsed="0.020907"/>
+<status status="PASS" start="2025-02-28T13:05:38.738067" elapsed="0.026824"/>
 </kw>
 <arg>https://www.avis.es/</arg>
-<status status="PASS" start="2025-02-28T12:28:57.264962" elapsed="0.312044"/>
+<status status="PASS" start="2025-02-28T13:05:38.397849" elapsed="0.367116"/>
 </kw>
 <kw name="Accept Cookies" owner="AvisPage">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:57.926765" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-13.png"&gt;&lt;img src="selenium-screenshot-13.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-02-28T12:28:57.926901" level="FAIL">Page should have contained element 'id=consent_prompt_accept' but did not.</msg>
+<msg time="2025-02-28T13:05:39.143660" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-16.png"&gt;&lt;img src="selenium-screenshot-16.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-28T13:05:39.143810" level="FAIL">Page should have contained element 'id=consent_prompt_accept' but did not.</msg>
 <arg>id=consent_prompt_accept</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="FAIL" start="2025-02-28T12:28:57.577822" elapsed="0.349493">Page should have contained element 'id=consent_prompt_accept' but did not.</status>
+<status status="FAIL" start="2025-02-28T13:05:38.765373" elapsed="0.380733">Page should have contained element 'id=consent_prompt_accept' but did not.</status>
 </kw>
-<msg time="2025-02-28T12:28:57.927387" level="INFO">${element_exists} = False</msg>
+<msg time="2025-02-28T13:05:39.146246" level="INFO">${element_exists} = False</msg>
 <var>${element_exists}</var>
 <arg>Page Should Contain Element</arg>
 <arg>id=consent_prompt_accept</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.577638" elapsed="0.349760"/>
+<status status="PASS" start="2025-02-28T13:05:38.765284" elapsed="0.380981"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.927559" level="INFO">Cookie accept button exists: False</msg>
+<msg time="2025-02-28T13:05:39.146475" level="INFO">Cookie accept button exists: False</msg>
 <arg>Cookie accept button exists: ${element_exists}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.927479" elapsed="0.000099"/>
+<status status="PASS" start="2025-02-28T13:05:39.146362" elapsed="0.000136"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>${element_exists}</arg>
@@ -878,76 +916,76 @@
 <arg>timeout=30s</arg>
 <arg>error=Cookie banner not found</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.927633" elapsed="0.000049"/>
+<status status="PASS" start="2025-02-28T13:05:39.146559" elapsed="0.000054"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>${element_exists}</arg>
 <arg>Click Element</arg>
 <arg>//*[@id="consent_prompt_accept"]</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.927888" elapsed="0.000113"/>
+<status status="PASS" start="2025-02-28T13:05:39.146666" elapsed="0.000042"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:57.577250" elapsed="0.350802"/>
+<status status="PASS" start="2025-02-28T13:05:38.765115" elapsed="0.381628"/>
 </kw>
 <kw name="Setup Dates and Times">
 <kw name="Set Day Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.929447" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:39.147339" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.928566" elapsed="0.000896"/>
+<status status="PASS" start="2025-02-28T13:05:39.147160" elapsed="0.000193"/>
 </kw>
 <kw name="Set Month Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.929723" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:39.147640" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.929640" elapsed="0.000094"/>
+<status status="PASS" start="2025-02-28T13:05:39.147539" elapsed="0.000112"/>
 </kw>
 <kw name="Subtract Time From Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.929934" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
+<msg time="2025-02-28T13:05:39.148409" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
 <var>${current_date}</var>
 <arg>${current_date}</arg>
 <arg>30 days</arg>
 <arg>date_format=%Y-%m-%d</arg>
 <doc>Subtracts time from date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.929779" elapsed="0.000165"/>
+<status status="PASS" start="2025-02-28T13:05:39.147752" elapsed="0.000676"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.930306" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:39.149161" level="INFO">${month} = 1</msg>
 <var>${month}</var>
 <arg>${current_date.split('-')[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.929992" elapsed="0.000325"/>
+<status status="PASS" start="2025-02-28T13:05:39.148499" elapsed="0.000676"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.930441" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:39.149322" level="INFO">${month} = 1</msg>
 <arg>${month}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.930369" elapsed="0.000087"/>
+<status status="PASS" start="2025-02-28T13:05:39.149236" elapsed="0.000103"/>
 </kw>
 <return>
 <value>${month}</value>
-<status status="PASS" start="2025-02-28T12:28:57.930479" elapsed="0.000024"/>
+<status status="PASS" start="2025-02-28T13:05:39.149368" elapsed="0.000033"/>
 </return>
-<msg time="2025-02-28T12:28:57.930551" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:39.149462" level="INFO">${month} = 1</msg>
 <var>${month}</var>
-<status status="PASS" start="2025-02-28T12:28:57.929545" elapsed="0.001014"/>
+<status status="PASS" start="2025-02-28T13:05:39.147437" elapsed="0.002035"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup'">
 <kw name="Add Time To Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.930786" level="INFO">${day} = 01</msg>
+<msg time="2025-02-28T13:05:39.149977" level="INFO">${day} = 01</msg>
 <var>${day}</var>
 <arg>${current_date}</arg>
 <arg>1 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.930683" elapsed="0.000112"/>
+<status status="PASS" start="2025-02-28T13:05:39.149828" elapsed="0.000162"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:57.930597" elapsed="0.000217"/>
+<status status="PASS" start="2025-02-28T13:05:39.149513" elapsed="0.000502"/>
 </branch>
 <branch type="ELSE">
 <kw name="Add Time To Date" owner="DateTime">
@@ -956,105 +994,105 @@
 <arg>2 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:57.930865" elapsed="0.000010"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.150079" elapsed="0.000011"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:57.930830" elapsed="0.000062"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.150036" elapsed="0.000073"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:57.930589" elapsed="0.000316"/>
+<status status="PASS" start="2025-02-28T13:05:39.149503" elapsed="0.000620"/>
 </if>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.930982" level="INFO">01</msg>
+<msg time="2025-02-28T13:05:39.150212" level="INFO">01</msg>
 <arg>${day}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.930936" elapsed="0.000063"/>
+<status status="PASS" start="2025-02-28T13:05:39.150161" elapsed="0.000069"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.931075" level="INFO">1</msg>
+<msg time="2025-02-28T13:05:39.150608" level="INFO">1</msg>
 <arg>${month}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.931036" elapsed="0.000053"/>
+<status status="PASS" start="2025-02-28T13:05:39.150530" elapsed="0.000101"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.931180" level="INFO">${day} = 1</msg>
+<msg time="2025-02-28T13:05:39.150764" level="INFO">${day} = 1</msg>
 <var>${day}</var>
 <arg>${day}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.931124" elapsed="0.000065"/>
+<status status="PASS" start="2025-02-28T13:05:39.150686" elapsed="0.000113"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.931286" level="INFO">${day} = 1</msg>
+<msg time="2025-02-28T13:05:39.150921" level="INFO">${day} = 1</msg>
 <arg>${day}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.931229" elapsed="0.000073"/>
+<status status="PASS" start="2025-02-28T13:05:39.150851" elapsed="0.000257"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.931432" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
+<msg time="2025-02-28T13:05:39.151271" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
 <arg>@{PICKUP_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.931339" elapsed="0.000107"/>
+<status status="PASS" start="2025-02-28T13:05:39.151160" elapsed="0.000129"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.931571" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
+<msg time="2025-02-28T13:05:39.151433" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='1'] ]</msg>
 <arg>@{DROPOFF_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.931486" elapsed="0.000138"/>
+<status status="PASS" start="2025-02-28T13:05:39.151337" elapsed="0.000113"/>
 </kw>
 <return>
 <value>${day}</value>
-<status status="PASS" start="2025-02-28T12:28:57.931645" elapsed="0.000014"/>
+<status status="PASS" start="2025-02-28T13:05:39.151474" elapsed="0.000021"/>
 </return>
-<msg time="2025-02-28T12:28:57.931706" level="INFO">${pickup_date} = 1</msg>
+<msg time="2025-02-28T13:05:39.151545" level="INFO">${pickup_date} = 1</msg>
 <var>${pickup_date}</var>
 <arg>pickup</arg>
-<status status="PASS" start="2025-02-28T12:28:57.928431" elapsed="0.003284"/>
+<status status="PASS" start="2025-02-28T13:05:39.147060" elapsed="0.004494"/>
 </kw>
 <kw name="Set Day Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.932071" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:39.151842" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.932008" elapsed="0.000073"/>
+<status status="PASS" start="2025-02-28T13:05:39.151765" elapsed="0.000088"/>
 </kw>
 <kw name="Set Month Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.932263" level="INFO">${current_date} = 2025-02-28</msg>
+<msg time="2025-02-28T13:05:39.152063" level="INFO">${current_date} = 2025-02-28</msg>
 <var>${current_date}</var>
 <arg>result_format=%Y-%m-%d</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.932206" elapsed="0.000067"/>
+<status status="PASS" start="2025-02-28T13:05:39.151998" elapsed="0.000075"/>
 </kw>
 <kw name="Subtract Time From Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.932406" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
+<msg time="2025-02-28T13:05:39.152232" level="INFO">${current_date} = 2025-01-29 00:00:00.000</msg>
 <var>${current_date}</var>
 <arg>${current_date}</arg>
 <arg>30 days</arg>
 <arg>date_format=%Y-%m-%d</arg>
 <doc>Subtracts time from date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.932310" elapsed="0.000105"/>
+<status status="PASS" start="2025-02-28T13:05:39.152116" elapsed="0.000128"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.932680" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:39.152568" level="INFO">${month} = 1</msg>
 <var>${month}</var>
 <arg>${current_date.split('-')[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.932461" elapsed="0.000229"/>
+<status status="PASS" start="2025-02-28T13:05:39.152288" elapsed="0.000291"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.932794" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:39.152697" level="INFO">${month} = 1</msg>
 <arg>${month}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.932732" elapsed="0.000077"/>
+<status status="PASS" start="2025-02-28T13:05:39.152627" elapsed="0.000087"/>
 </kw>
 <return>
 <value>${month}</value>
-<status status="PASS" start="2025-02-28T12:28:57.932828" elapsed="0.000014"/>
+<status status="PASS" start="2025-02-28T13:05:39.152736" elapsed="0.000017"/>
 </return>
-<msg time="2025-02-28T12:28:57.932884" level="INFO">${month} = 1</msg>
+<msg time="2025-02-28T13:05:39.152799" level="INFO">${month} = 1</msg>
 <var>${month}</var>
-<status status="PASS" start="2025-02-28T12:28:57.932136" elapsed="0.000757"/>
+<status status="PASS" start="2025-02-28T13:05:39.151917" elapsed="0.000891"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup'">
@@ -1064,588 +1102,634 @@
 <arg>1 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:57.932980" elapsed="0.000010"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.152961" elapsed="0.000011"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:57.932919" elapsed="0.000088"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.152841" elapsed="0.000152"/>
 </branch>
 <branch type="ELSE">
 <kw name="Add Time To Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.933145" level="INFO">${day} = 02</msg>
+<msg time="2025-02-28T13:05:39.153148" level="INFO">${day} = 02</msg>
 <var>${day}</var>
 <arg>${current_date}</arg>
 <arg>2 days</arg>
 <arg>result_format=%d</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.933052" elapsed="0.000102"/>
+<status status="PASS" start="2025-02-28T13:05:39.153044" elapsed="0.000115"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:57.933021" elapsed="0.000151"/>
+<status status="PASS" start="2025-02-28T13:05:39.153008" elapsed="0.000171"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:57.932913" elapsed="0.000272"/>
+<status status="PASS" start="2025-02-28T13:05:39.152832" elapsed="0.000361"/>
 </if>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.933255" level="INFO">02</msg>
+<msg time="2025-02-28T13:05:39.153275" level="INFO">02</msg>
 <arg>${day}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.933216" elapsed="0.000053"/>
+<status status="PASS" start="2025-02-28T13:05:39.153230" elapsed="0.000062"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.933342" level="INFO">1</msg>
+<msg time="2025-02-28T13:05:39.153373" level="INFO">1</msg>
 <arg>${month}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.933304" elapsed="0.000052"/>
+<status status="PASS" start="2025-02-28T13:05:39.153333" elapsed="0.000055"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.933443" level="INFO">${day} = 2</msg>
+<msg time="2025-02-28T13:05:39.153595" level="INFO">${day} = 2</msg>
 <var>${day}</var>
 <arg>${day}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.933389" elapsed="0.000063"/>
+<status status="PASS" start="2025-02-28T13:05:39.153426" elapsed="0.000182"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.933545" level="INFO">${day} = 2</msg>
+<msg time="2025-02-28T13:05:39.153746" level="INFO">${day} = 2</msg>
 <arg>${day}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.933490" elapsed="0.000067"/>
+<status status="PASS" start="2025-02-28T13:05:39.153676" elapsed="0.000087"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.933680" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
+<msg time="2025-02-28T13:05:39.153945" level="INFO">@{PICKUP_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
 <arg>@{PICKUP_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.933593" elapsed="0.000101"/>
+<status status="PASS" start="2025-02-28T13:05:39.153825" elapsed="0.000140"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.933818" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
+<msg time="2025-02-28T13:05:39.154113" level="INFO">@{DROPOFF_DATE_SUGGESTIONS} = [ //div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='1' and @data-pika-day='2'] ]</msg>
 <arg>@{DROPOFF_DATE_SUGGESTIONS}</arg>
 <arg>//div[@class='pika-single']//button[@data-pika-year='2024' and @data-pika-month='${month}' and @data-pika-day='${day}']</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.933733" elapsed="0.000100"/>
+<status status="PASS" start="2025-02-28T13:05:39.154016" elapsed="0.000113"/>
 </kw>
 <return>
 <value>${day}</value>
-<status status="PASS" start="2025-02-28T12:28:57.933852" elapsed="0.000013"/>
+<status status="PASS" start="2025-02-28T13:05:39.154154" elapsed="0.000018"/>
 </return>
-<msg time="2025-02-28T12:28:57.933909" level="INFO">${dropoff_date} = 2</msg>
+<msg time="2025-02-28T13:05:39.154227" level="INFO">${dropoff_date} = 2</msg>
 <var>${dropoff_date}</var>
 <arg>dropoff</arg>
-<status status="PASS" start="2025-02-28T12:28:57.931799" elapsed="0.002119"/>
+<status status="PASS" start="2025-02-28T13:05:39.151664" elapsed="0.002573"/>
 </kw>
 <kw name="Set Time Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.934107" level="INFO">${current_time} = 12:28</msg>
+<msg time="2025-02-28T13:05:39.154472" level="INFO">${current_time} = 13:05</msg>
 <var>${current_time}</var>
 <arg>result_format=%H:%M</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.934047" elapsed="0.000069"/>
+<status status="PASS" start="2025-02-28T13:05:39.154400" elapsed="0.000113"/>
 </kw>
 <kw name="Format Time" owner="AvisPage">
 <kw name="Split String" owner="String">
-<msg time="2025-02-28T12:28:57.934314" level="INFO">${time_parts} = ['12', '28']</msg>
+<msg time="2025-02-28T13:05:39.154757" level="INFO">${time_parts} = ['13', '05']</msg>
 <var>${time_parts}</var>
 <arg>${time}</arg>
 <arg>:</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.934253" elapsed="0.000071"/>
+<status status="PASS" start="2025-02-28T13:05:39.154672" elapsed="0.000096"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.934607" level="INFO">${hour} = 12</msg>
+<msg time="2025-02-28T13:05:39.155110" level="INFO">${hour} = 13</msg>
 <var>${hour}</var>
 <arg>${time_parts[0]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.934361" elapsed="0.000256"/>
+<status status="PASS" start="2025-02-28T13:05:39.154813" elapsed="0.000308"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.934967" level="INFO">${minute} = 28</msg>
+<msg time="2025-02-28T13:05:39.155417" level="INFO">${minute} = 5</msg>
 <var>${minute}</var>
 <arg>${time_parts[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.934657" elapsed="0.000326"/>
+<status status="PASS" start="2025-02-28T13:05:39.155166" elapsed="0.000262"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>${hour} &lt; 0 or ${hour} &gt; 23 or ${minute} &lt; 0 or ${minute} &gt; 59</arg>
 <arg>Fail</arg>
 <arg>Invalid time format: ${time}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.935029" elapsed="0.000092"/>
+<status status="PASS" start="2025-02-28T13:05:39.155475" elapsed="0.000089"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.935221" level="INFO">${formatted_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.155660" level="INFO">${formatted_time} = 13:00</msg>
 <var>${formatted_time}</var>
 <arg>${hour}:00</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.935165" elapsed="0.000093"/>
+<status status="PASS" start="2025-02-28T13:05:39.155609" elapsed="0.000061"/>
 </kw>
 <return>
 <value>${formatted_time}</value>
-<status status="PASS" start="2025-02-28T12:28:57.935280" elapsed="0.000016"/>
+<status status="PASS" start="2025-02-28T13:05:39.155691" elapsed="0.000016"/>
 </return>
-<msg time="2025-02-28T12:28:57.935341" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.155753" level="INFO">${time} = 13:00</msg>
 <var>${time}</var>
 <arg>${current_time}</arg>
-<status status="PASS" start="2025-02-28T12:28:57.934169" elapsed="0.001181"/>
+<status status="PASS" start="2025-02-28T13:05:39.154578" elapsed="0.001184"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.935454" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.155865" level="INFO">${time} = 13:00</msg>
 <arg>${time}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.935392" elapsed="0.000077"/>
+<status status="PASS" start="2025-02-28T13:05:39.155805" elapsed="0.000074"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.935580" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:39.155990" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${PICKUP_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.935511" elapsed="0.000084"/>
+<status status="PASS" start="2025-02-28T13:05:39.155920" elapsed="0.000084"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.935700" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:39.156117" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${DROPOFF_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.935635" elapsed="0.000081"/>
+<status status="PASS" start="2025-02-28T13:05:39.156044" elapsed="0.000087"/>
 </kw>
 <return>
 <value>${time}</value>
-<status status="PASS" start="2025-02-28T12:28:57.935735" elapsed="0.000013"/>
+<status status="PASS" start="2025-02-28T13:05:39.156150" elapsed="0.000013"/>
 </return>
-<msg time="2025-02-28T12:28:57.935791" level="INFO">${pickup_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.156208" level="INFO">${pickup_time} = 13:00</msg>
 <var>${pickup_time}</var>
-<status status="PASS" start="2025-02-28T12:28:57.933975" elapsed="0.001825"/>
+<status status="PASS" start="2025-02-28T13:05:39.154311" elapsed="0.001906"/>
 </kw>
 <kw name="Set Time Variable" owner="AvisPage">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-02-28T12:28:57.936000" level="INFO">${current_time} = 12:28</msg>
+<msg time="2025-02-28T13:05:39.156438" level="INFO">${current_time} = 13:05</msg>
 <var>${current_time}</var>
 <arg>result_format=%H:%M</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.935933" elapsed="0.000076"/>
+<status status="PASS" start="2025-02-28T13:05:39.156365" elapsed="0.000082"/>
 </kw>
 <kw name="Format Time" owner="AvisPage">
 <kw name="Split String" owner="String">
-<msg time="2025-02-28T12:28:57.936213" level="INFO">${time_parts} = ['12', '28']</msg>
+<msg time="2025-02-28T13:05:39.156748" level="INFO">${time_parts} = ['13', '05']</msg>
 <var>${time_parts}</var>
 <arg>${time}</arg>
 <arg>:</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.936149" elapsed="0.000074"/>
+<status status="PASS" start="2025-02-28T13:05:39.156597" elapsed="0.000161"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.936486" level="INFO">${hour} = 12</msg>
+<msg time="2025-02-28T13:05:39.157042" level="INFO">${hour} = 13</msg>
 <var>${hour}</var>
 <arg>${time_parts[0]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.936262" elapsed="0.000236"/>
+<status status="PASS" start="2025-02-28T13:05:39.156802" elapsed="0.000250"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.936749" level="INFO">${minute} = 28</msg>
+<msg time="2025-02-28T13:05:39.157316" level="INFO">${minute} = 5</msg>
 <var>${minute}</var>
 <arg>${time_parts[1]}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.936536" elapsed="0.000222"/>
+<status status="PASS" start="2025-02-28T13:05:39.157093" elapsed="0.000233"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>${hour} &lt; 0 or ${hour} &gt; 23 or ${minute} &lt; 0 or ${minute} &gt; 59</arg>
 <arg>Fail</arg>
 <arg>Invalid time format: ${time}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.936798" elapsed="0.000077"/>
+<status status="PASS" start="2025-02-28T13:05:39.157370" elapsed="0.000081"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.936964" level="INFO">${formatted_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.157543" level="INFO">${formatted_time} = 13:00</msg>
 <var>${formatted_time}</var>
 <arg>${hour}:00</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.936914" elapsed="0.000059"/>
+<status status="PASS" start="2025-02-28T13:05:39.157493" elapsed="0.000059"/>
 </kw>
 <return>
 <value>${formatted_time}</value>
-<status status="PASS" start="2025-02-28T12:28:57.936992" elapsed="0.000013"/>
+<status status="PASS" start="2025-02-28T13:05:39.157573" elapsed="0.000014"/>
 </return>
-<msg time="2025-02-28T12:28:57.937046" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.157630" level="INFO">${time} = 13:00</msg>
 <var>${time}</var>
 <arg>${current_time}</arg>
-<status status="PASS" start="2025-02-28T12:28:57.936065" elapsed="0.000989"/>
+<status status="PASS" start="2025-02-28T13:05:39.156506" elapsed="0.001133"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.937233" level="INFO">${time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.157740" level="INFO">${time} = 13:00</msg>
 <arg>${time}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.937094" elapsed="0.000154"/>
+<status status="PASS" start="2025-02-28T13:05:39.157681" elapsed="0.000073"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.937364" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:39.157864" level="INFO">${PICKUP_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${PICKUP_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.937290" elapsed="0.000090"/>
+<status status="PASS" start="2025-02-28T13:05:39.157794" elapsed="0.000083"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.937494" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '12:00')]</msg>
+<msg time="2025-02-28T13:05:39.157989" level="INFO">${DROPOFF_TIME_SUGGESTIONS} = //ul[@class='ui-timepicker-list']//li[contains(text(), '13:00')]</msg>
 <arg>${DROPOFF_TIME_SUGGESTIONS}</arg>
 <arg>//ul[@class='ui-timepicker-list']//li[contains(text(), '${time}')]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.937423" elapsed="0.000087"/>
+<status status="PASS" start="2025-02-28T13:05:39.157917" elapsed="0.000086"/>
 </kw>
 <return>
 <value>${time}</value>
-<status status="PASS" start="2025-02-28T12:28:57.937531" elapsed="0.000014"/>
+<status status="PASS" start="2025-02-28T13:05:39.158022" elapsed="0.000013"/>
 </return>
-<msg time="2025-02-28T12:28:57.937590" level="INFO">${dropoff_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.158079" level="INFO">${dropoff_time} = 13:00</msg>
 <var>${dropoff_time}</var>
-<status status="PASS" start="2025-02-28T12:28:57.935858" elapsed="0.001742"/>
+<status status="PASS" start="2025-02-28T13:05:39.156282" elapsed="0.001806"/>
 </kw>
 <return>
 <value>${pickup_date}</value>
 <value>${dropoff_date}</value>
 <value>${pickup_time}</value>
 <value>${dropoff_time}</value>
-<status status="PASS" start="2025-02-28T12:28:57.937619" elapsed="0.000012"/>
+<status status="PASS" start="2025-02-28T13:05:39.158106" elapsed="0.000011"/>
 </return>
-<msg time="2025-02-28T12:28:57.937709" level="INFO">${pickup_date} = 1</msg>
-<msg time="2025-02-28T12:28:57.937723" level="INFO">${dropoff_date} = 2</msg>
-<msg time="2025-02-28T12:28:57.937735" level="INFO">${pickup_time} = 12:00</msg>
-<msg time="2025-02-28T12:28:57.937747" level="INFO">${dropoff_time} = 12:00</msg>
+<msg time="2025-02-28T13:05:39.158195" level="INFO">${pickup_date} = 1</msg>
+<msg time="2025-02-28T13:05:39.158236" level="INFO">${dropoff_date} = 2</msg>
+<msg time="2025-02-28T13:05:39.158250" level="INFO">${pickup_time} = 13:00</msg>
+<msg time="2025-02-28T13:05:39.158263" level="INFO">${dropoff_time} = 13:00</msg>
 <var>${pickup_date}</var>
 <var>${dropoff_date}</var>
 <var>${pickup_time}</var>
 <var>${dropoff_time}</var>
-<status status="PASS" start="2025-02-28T12:28:57.928215" elapsed="0.009540"/>
+<status status="PASS" start="2025-02-28T13:05:39.146890" elapsed="0.011381"/>
 </kw>
 <kw name="Perform Complete Search" owner="AvisPage">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.938063" level="INFO">Performing search for vehicle type: VAN</msg>
+<msg time="2025-02-28T13:05:39.158599" level="INFO">Performing search for vehicle type: VAN</msg>
 <arg>Performing search for vehicle type: ${vehicle_type}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.938018" elapsed="0.000062"/>
+<status status="PASS" start="2025-02-28T13:05:39.158551" elapsed="0.000067"/>
 </kw>
 <if>
 <branch type="IF" condition="'${vehicle_type}' == 'VAN'">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-28T12:28:57.938219" level="INFO">Targeting van radio button: //label[@for='fleet-van']</msg>
+<msg time="2025-02-28T13:05:39.158769" level="INFO">Targeting van radio button: //label[@for='fleet-van']</msg>
 <arg>Targeting van radio button: ${RBTN_VAN}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.938175" elapsed="0.000060"/>
+<status status="PASS" start="2025-02-28T13:05:39.158724" elapsed="0.000062"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${RBTN_VAN}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.938286" elapsed="0.009614"/>
+<status status="PASS" start="2025-02-28T13:05:39.158841" elapsed="0.009800"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:57.948151" level="INFO">Clicking element '//label[@for='fleet-van']'.</msg>
+<msg time="2025-02-28T13:05:39.168938" level="INFO">Clicking element '//label[@for='fleet-van']'.</msg>
 <arg>${RBTN_VAN}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.948025" elapsed="0.039301"/>
+<status status="PASS" start="2025-02-28T13:05:39.168762" elapsed="0.054487"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:57.938111" elapsed="0.049309"/>
+<status status="PASS" start="2025-02-28T13:05:39.158654" elapsed="0.064655"/>
 </branch>
 <branch type="ELSE IF" condition="'${vehicle_type}' == 'CAR'">
 <kw name="Log" owner="BuiltIn">
 <arg>Targeting car radio button: ${RBTN_CAR}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:57.987534" elapsed="0.000014"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.223572" elapsed="0.000021"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${RBTN_CAR}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:57.987600" elapsed="0.000011"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.223647" elapsed="0.000011"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
 <arg>${RBTN_CAR}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:57.987653" elapsed="0.000009"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.223699" elapsed="0.000009"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:57.987448" elapsed="0.000229"/>
+<status status="NOT RUN" start="2025-02-28T13:05:39.223339" elapsed="0.000384"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:57.938104" elapsed="0.049590"/>
+<status status="PASS" start="2025-02-28T13:05:39.158644" elapsed="0.065097"/>
 </if>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:57.987865" level="INFO">Clicking element 'xpath=//label[@for='trigger-return-location']'.</msg>
+<msg time="2025-02-28T13:05:39.223938" level="INFO">Clicking element 'xpath=//label[@for='trigger-return-location']'.</msg>
 <arg>${CHECK_DIFFERENT_RETURN}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:57.987734" elapsed="0.030218"/>
+<status status="PASS" start="2025-02-28T13:05:39.223780" elapsed="0.040958"/>
 </kw>
 <kw name="Set Location" owner="AvisPage">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:58.018302" elapsed="0.006859"/>
+<status status="PASS" start="2025-02-28T13:05:39.265095" elapsed="0.005865"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:58.025273" elapsed="0.014890"/>
+<status status="PASS" start="2025-02-28T13:05:39.271045" elapsed="0.013804"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_OFFICE}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:58.040268" elapsed="0.006194"/>
+<status status="PASS" start="2025-02-28T13:05:39.284954" elapsed="0.005713"/>
 </kw>
 <kw name="Create List" owner="BuiltIn">
-<msg time="2025-02-28T12:28:58.046759" level="INFO">@{location_list} = [ Barcelona ]</msg>
+<msg time="2025-02-28T13:05:39.290839" level="INFO">@{location_list} = [ Barcelona ]</msg>
 <var>@{location_list}</var>
 <arg>${location}</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2025-02-28T12:28:58.046575" elapsed="0.000215"/>
+<status status="PASS" start="2025-02-28T13:05:39.290748" elapsed="0.000104"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:58.047512" level="INFO">Typing text 'Barcelona' into text field 'id=hire-search'.</msg>
+<msg time="2025-02-28T13:05:39.291079" level="INFO">Typing text 'Barcelona' into text field 'id=hire-search'.</msg>
 <arg>${field_locator}</arg>
 <arg>${char}</arg>
 <arg>append=True</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:58.047276" elapsed="0.089572"/>
+<status status="PASS" start="2025-02-28T13:05:39.290989" elapsed="0.062991"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:28:58.438255" level="INFO">Slept 300 milliseconds.</msg>
+<msg time="2025-02-28T13:05:39.656442" level="INFO">Slept 300 milliseconds.</msg>
 <arg>0.3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:28:58.136962" elapsed="0.301635"/>
+<status status="PASS" start="2025-02-28T13:05:39.354086" elapsed="0.302454"/>
 </kw>
 <var name="${char}">Barcelona</var>
-<status status="PASS" start="2025-02-28T12:28:58.047161" elapsed="0.391613"/>
+<status status="PASS" start="2025-02-28T13:05:39.290948" elapsed="0.365657"/>
 </iter>
 <var>${char}</var>
 <value>@{location_list}</value>
-<status status="PASS" start="2025-02-28T12:28:58.046851" elapsed="0.392020"/>
+<status status="PASS" start="2025-02-28T13:05:39.290884" elapsed="0.365765"/>
 </for>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:28:59.442004" level="INFO">Slept 1 second.</msg>
+<msg time="2025-02-28T13:05:40.657800" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:28:58.439171" elapsed="1.003291"/>
+<status status="PASS" start="2025-02-28T13:05:39.656768" elapsed="1.001539"/>
 </kw>
 <kw name="Press Keys" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:59.445064" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=hire-search element.</msg>
-<msg time="2025-02-28T12:28:59.727246" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
-<msg time="2025-02-28T12:28:59.727358" level="INFO">Releasing special key ARROW_DOWN.</msg>
-<msg time="2025-02-28T12:28:59.735223" level="INFO">Pressing special key RETURN to element.</msg>
-<msg time="2025-02-28T12:28:59.735298" level="INFO">Releasing special key RETURN.</msg>
+<msg time="2025-02-28T13:05:40.660904" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=hire-search element.</msg>
+<msg time="2025-02-28T13:05:40.948093" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg time="2025-02-28T13:05:40.948196" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg time="2025-02-28T13:05:40.955958" level="INFO">Pressing special key RETURN to element.</msg>
+<msg time="2025-02-28T13:05:40.956047" level="INFO">Releasing special key RETURN.</msg>
 <arg>${field_locator}</arg>
 <arg>ARROW_DOWN</arg>
 <arg>RETURN</arg>
 <doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.443094" elapsed="0.323887"/>
+<status status="PASS" start="2025-02-28T13:05:40.659143" elapsed="0.329533"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.767185" elapsed="0.033183"/>
+<status status="PASS" start="2025-02-28T13:05:40.988841" elapsed="0.009044"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.800494" elapsed="0.011984"/>
+<status status="PASS" start="2025-02-28T13:05:40.998025" elapsed="0.007705"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<msg time="2025-02-28T13:05:41.332706" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-17.png"&gt;&lt;img src="selenium-screenshot-17.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-28T13:05:41.332839" level="FAIL">StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=133.0.6943.142); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001005802d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000100578934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001000d9f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001000dfc9c cxxbridge1$string$len + 117180
+4   chromedriver                        0x00000001000e1d74 cxxbridge1$string$len + 125588
+5   chromedriver                        0x00000001000e1e1c cxxbridge1$string$len + 125756
+6   chromedriver                        0x000000010011c37c cxxbridge1$string$len + 364700
+7   chromedriver                        0x000000010011657c cxxbridge1$string$len + 340636
+8   chromedriver                        0x0000000100161e80 cxxbridge1$string$len + 650144
+9   chromedriver                        0x0000000100115060 cxxbridge1$string$len + 335232
+10  chromedriver                        0x0000000100548c38 cxxbridge1$str$ptr + 2512864
+11  chromedriver                        0x000000010054bf58 cxxbridge1$str$ptr + 2525952
+12  chromedriver                        0x000000010052e578 cxxbridge1$str$ptr + 2404640
+13  chromedriver                        0x000000010054c818 cxxbridge1$str$ptr + 2528192
+14  chromedriver                        0x000000010051ef2c cxxbridge1$str$ptr + 2341588
+15  chromedriver                        0x0000000100568a60 cxxbridge1$str$ptr + 2643464
+16  chromedriver                        0x0000000100568be8 cxxbridge1$str$ptr + 2643856
+17  chromedriver                        0x00000001005785a8 cxxbridge1$str$ptr + 2707792
+18  libsystem_pthread.dylib             0x0000000184e242e4 _pthread_start + 136
+19  libsystem_pthread.dylib             0x0000000184e1f0fc thread_start + 8
+</msg>
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.812702" elapsed="0.008569"/>
+<status status="FAIL" start="2025-02-28T13:05:41.005987" elapsed="0.329404">StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=133.0.6943.142); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001005802d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000100578934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001000d9f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001000dfc9c cxxbridge1$string$len + 117180
+4   chromedriver                        0x00000001000e1d74 cxxbridge1$string$len + 125588
+5   chromedriver                        0x00000001000e1e1c cxxbridge1$string$len + 125756
+6   chromedriver                        0x000000010011c37c cxxbridge1$string$len + 364700
+    [ Message content over the limit has been removed. ]
+...er                        0x0000000100115060 cxxbridge1$string$len + 335232
+10  chromedriver                        0x0000000100548c38 cxxbridge1$str$ptr + 2512864
+11  chromedriver                        0x000000010054bf58 cxxbridge1$str$ptr + 2525952
+12  chromedriver                        0x000000010052e578 cxxbridge1$str$ptr + 2404640
+13  chromedriver                        0x000000010054c818 cxxbridge1$str$ptr + 2528192
+14  chromedriver                        0x000000010051ef2c cxxbridge1$str$ptr + 2341588
+15  chromedriver                        0x0000000100568a60 cxxbridge1$str$ptr + 2643464
+16  chromedriver                        0x0000000100568be8 cxxbridge1$str$ptr + 2643856
+17  chromedriver                        0x00000001005785a8 cxxbridge1$str$ptr + 2707792
+18  libsystem_pthread.dylib             0x0000000184e242e4 _pthread_start + 136
+19  libsystem_pthread.dylib             0x0000000184e1f0fc thread_start + 8</status>
 </kw>
-<msg time="2025-02-28T12:28:59.821357" level="INFO">${pickup_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:41.335477" level="INFO">${pickup_suggestions_interactable} = False</msg>
 <var>${pickup_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.812602" elapsed="0.008768"/>
+<status status="PASS" start="2025-02-28T13:05:41.005872" elapsed="0.329618"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.821550" elapsed="0.009043"/>
+<status status="PASS" start="2025-02-28T13:05:41.335651" elapsed="0.008201"/>
 </kw>
-<msg time="2025-02-28T12:28:59.830676" level="INFO">${dropoff_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:41.343922" level="INFO">${dropoff_suggestions_interactable} = True</msg>
 <var>${dropoff_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.821461" elapsed="0.009228"/>
+<status status="PASS" start="2025-02-28T13:05:41.335571" elapsed="0.008363"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup' and ${pickup_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:59.830998" level="INFO">Clicking element 'css=.booking-widget__results__item:first-child .booking-widget__results__link'.</msg>
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.830889" elapsed="0.063105"/>
+<status status="NOT RUN" start="2025-02-28T13:05:41.344115" elapsed="0.000013"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:28:59.830742" elapsed="0.063304"/>
+<status status="NOT RUN" start="2025-02-28T13:05:41.343982" elapsed="0.000163"/>
 </branch>
 <branch type="ELSE IF" condition="'${type}' == 'dropoff' and ${dropoff_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:59.894154" elapsed="0.000015"/>
+<status status="NOT RUN" start="2025-02-28T13:05:41.344239" elapsed="0.000010"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:59.894072" elapsed="0.000114"/>
+<status status="NOT RUN" start="2025-02-28T13:05:41.344162" elapsed="0.000102"/>
 </branch>
 <branch type="ELSE">
 <kw name="Log" owner="BuiltIn">
+<msg time="2025-02-28T13:05:41.344379" level="INFO">Invalid location type specified or element not interactable: pickup</msg>
 <arg>Invalid location type specified or element not interactable: ${type}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-28T12:28:59.894244" elapsed="0.000010"/>
+<status status="PASS" start="2025-02-28T13:05:41.344316" elapsed="0.000082"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:28:59.894201" elapsed="0.000069"/>
+<status status="PASS" start="2025-02-28T13:05:41.344278" elapsed="0.000136"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:28:59.830729" elapsed="0.063554"/>
+<status status="PASS" start="2025-02-28T13:05:41.343969" elapsed="0.000458"/>
 </if>
 <arg>${PICKUP_OFFICE}</arg>
 <arg>${pickup_location}</arg>
 <arg>pickup</arg>
-<status status="PASS" start="2025-02-28T12:28:58.018131" elapsed="1.876185"/>
+<status status="PASS" start="2025-02-28T13:05:39.264918" elapsed="2.079531"/>
 </kw>
 <kw name="Set Location" owner="AvisPage">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.895021" elapsed="0.005891"/>
+<status status="PASS" start="2025-02-28T13:05:41.344692" elapsed="0.005780"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
 <arg>${field_locator}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.900999" elapsed="0.013535"/>
+<status status="PASS" start="2025-02-28T13:05:41.350551" elapsed="0.012863"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_OFFICE}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.914639" elapsed="0.008586"/>
+<status status="PASS" start="2025-02-28T13:05:41.363521" elapsed="0.005536"/>
 </kw>
 <kw name="Create List" owner="BuiltIn">
-<msg time="2025-02-28T12:28:59.923451" level="INFO">@{location_list} = [ Alicante ]</msg>
+<msg time="2025-02-28T13:05:41.369226" level="INFO">@{location_list} = [ Alicante ]</msg>
 <var>@{location_list}</var>
 <arg>${location}</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.923337" elapsed="0.000128"/>
+<status status="PASS" start="2025-02-28T13:05:41.369136" elapsed="0.000103"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:28:59.923712" level="INFO">Typing text 'Alicante' into text field 'id=return-search'.</msg>
+<msg time="2025-02-28T13:05:41.369472" level="INFO">Typing text 'Alicante' into text field 'id=return-search'.</msg>
 <arg>${field_locator}</arg>
 <arg>${char}</arg>
 <arg>append=True</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:28:59.923608" elapsed="0.076569"/>
+<status status="PASS" start="2025-02-28T13:05:41.369380" elapsed="0.072074"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:29:00.303014" level="INFO">Slept 300 milliseconds.</msg>
+<msg time="2025-02-28T13:05:41.741764" level="INFO">Slept 300 milliseconds.</msg>
 <arg>0.3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:29:00.000284" elapsed="0.303860"/>
+<status status="PASS" start="2025-02-28T13:05:41.441558" elapsed="0.300288"/>
 </kw>
 <var name="${char}">Alicante</var>
-<status status="PASS" start="2025-02-28T12:28:59.923564" elapsed="0.380822"/>
+<status status="PASS" start="2025-02-28T13:05:41.369336" elapsed="0.372559"/>
 </iter>
 <var>${char}</var>
 <value>@{location_list}</value>
-<status status="PASS" start="2025-02-28T12:28:59.923498" elapsed="0.381070"/>
+<status status="PASS" start="2025-02-28T13:05:41.369273" elapsed="0.372657"/>
 </for>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-28T12:29:01.306219" level="INFO">Slept 1 second.</msg>
+<msg time="2025-02-28T13:05:42.742354" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-28T12:29:00.305118" elapsed="1.001509"/>
+<status status="PASS" start="2025-02-28T13:05:41.742030" elapsed="1.000632"/>
 </kw>
 <kw name="Press Keys" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:29:01.308810" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=return-search element.</msg>
-<msg time="2025-02-28T12:29:01.594084" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
-<msg time="2025-02-28T12:29:01.594184" level="INFO">Releasing special key ARROW_DOWN.</msg>
-<msg time="2025-02-28T12:29:01.602310" level="INFO">Pressing special key RETURN to element.</msg>
-<msg time="2025-02-28T12:29:01.602399" level="INFO">Releasing special key RETURN.</msg>
+<msg time="2025-02-28T13:05:42.744528" level="INFO">Sending key(s) ('ARROW_DOWN', 'RETURN') to id=return-search element.</msg>
+<msg time="2025-02-28T13:05:43.027639" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg time="2025-02-28T13:05:43.027751" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg time="2025-02-28T13:05:43.040350" level="INFO">Pressing special key RETURN to element.</msg>
+<msg time="2025-02-28T13:05:43.040435" level="INFO">Releasing special key RETURN.</msg>
 <arg>${field_locator}</arg>
 <arg>ARROW_DOWN</arg>
 <arg>RETURN</arg>
 <doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.307274" elapsed="0.323777"/>
+<status status="PASS" start="2025-02-28T13:05:42.743275" elapsed="0.324153"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.631267" elapsed="0.010600"/>
+<status status="PASS" start="2025-02-28T13:05:43.067605" elapsed="0.010495"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.642013" elapsed="0.014452"/>
+<status status="PASS" start="2025-02-28T13:05:43.078249" elapsed="0.008246"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.656706" elapsed="0.010311"/>
+<status status="PASS" start="2025-02-28T13:05:43.086750" elapsed="0.010220"/>
 </kw>
-<msg time="2025-02-28T12:29:01.667112" level="INFO">${pickup_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:43.097070" level="INFO">${pickup_suggestions_interactable} = True</msg>
 <var>${pickup_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.656595" elapsed="0.010532"/>
+<status status="PASS" start="2025-02-28T13:05:43.086634" elapsed="0.010452"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Enabled" owner="SeleniumLibrary">
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Verifies that element identified by ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.667310" elapsed="0.008310"/>
+<status status="PASS" start="2025-02-28T13:05:43.097280" elapsed="0.009805"/>
 </kw>
-<msg time="2025-02-28T12:29:01.675695" level="INFO">${dropoff_suggestions_interactable} = True</msg>
+<msg time="2025-02-28T13:05:43.107178" level="INFO">${dropoff_suggestions_interactable} = True</msg>
 <var>${dropoff_suggestions_interactable}</var>
 <arg>Element Should Be Enabled</arg>
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.667216" elapsed="0.008498"/>
+<status status="PASS" start="2025-02-28T13:05:43.097182" elapsed="0.010010"/>
 </kw>
 <if>
 <branch type="IF" condition="'${type}' == 'pickup' and ${pickup_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
 <arg>${PICKUP_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-02-28T12:29:01.675902" elapsed="0.000015"/>
+<status status="NOT RUN" start="2025-02-28T13:05:43.107413" elapsed="0.000015"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:29:01.675765" elapsed="0.000172"/>
+<status status="NOT RUN" start="2025-02-28T13:05:43.107249" elapsed="0.000200"/>
 </branch>
 <branch type="ELSE IF" condition="'${type}' == 'dropoff' and ${dropoff_suggestions_interactable}">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:29:01.676131" level="INFO">Clicking element 'css=.booking-widget__results__item:first-child .booking-widget__results__link'.</msg>
+<msg time="2025-02-28T13:05:43.107671" level="INFO">Clicking element 'css=.booking-widget__results__item:first-child .booking-widget__results__link'.</msg>
 <arg>${DROPOFF_SUGGESTIONS}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.676043" elapsed="0.061688"/>
+<status status="PASS" start="2025-02-28T13:05:43.107557" elapsed="0.071049"/>
 </kw>
-<status status="PASS" start="2025-02-28T12:29:01.675956" elapsed="0.061838"/>
+<status status="PASS" start="2025-02-28T13:05:43.107468" elapsed="0.071266"/>
 </branch>
 <branch type="ELSE">
 <kw name="Log" owner="BuiltIn">
 <arg>Invalid location type specified or element not interactable: ${type}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-28T12:29:01.737907" elapsed="0.000017"/>
+<status status="NOT RUN" start="2025-02-28T13:05:43.178939" elapsed="0.000021"/>
 </kw>
-<status status="NOT RUN" start="2025-02-28T12:29:01.737821" elapsed="0.000122"/>
+<status status="NOT RUN" start="2025-02-28T13:05:43.178773" elapsed="0.000213"/>
 </branch>
-<status status="PASS" start="2025-02-28T12:29:01.675752" elapsed="0.062206"/>
+<status status="PASS" start="2025-02-28T13:05:43.107235" elapsed="0.071768"/>
 </if>
 <arg>${DROPOFF_OFFICE}</arg>
 <arg>${dropoff_location}</arg>
 <arg>dropoff</arg>
-<status status="PASS" start="2025-02-28T12:28:59.894694" elapsed="1.843294"/>
+<status status="PASS" start="2025-02-28T13:05:41.344566" elapsed="1.834478"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-28T12:29:01.738170" level="INFO">Clicking element '//*[@id="getAQuote"]/div[7]/button'.</msg>
+<msg time="2025-02-28T13:05:43.179536" level="INFO">Clicking element '//*[@id="getAQuote"]/div[7]/button'.</msg>
 <arg>${SEARCH_BUTTON}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-28T12:29:01.738043" elapsed="2.761276"/>
+<status status="PASS" start="2025-02-28T13:05:43.179107" elapsed="0.053299"/>
 </kw>
 <arg>Barcelona</arg>
 <arg>Alicante</arg>
@@ -1654,17 +1738,17 @@
 <arg>${pickup_time}</arg>
 <arg>${dropoff_time}</arg>
 <arg>VAN</arg>
-<status status="PASS" start="2025-02-28T12:28:57.937867" elapsed="6.561534"/>
+<status status="PASS" start="2025-02-28T13:05:39.158396" elapsed="4.074077"/>
 </kw>
 <doc>Tests the van rental search functionality</doc>
-<status status="PASS" start="2025-02-28T12:28:57.263979" elapsed="7.236003"/>
+<status status="PASS" start="2025-02-28T13:05:38.397436" elapsed="4.835168"/>
 </test>
 <kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes all open browsers and resets the browser cache.</doc>
-<status status="PASS" start="2025-02-28T12:29:04.501200" elapsed="0.341855"/>
+<status status="PASS" start="2025-02-28T13:05:43.232947" elapsed="0.114360"/>
 </kw>
 <doc>Avis Vehicle Search Tests</doc>
-<status status="PASS" start="2025-02-28T12:28:44.929786" elapsed="19.913373"/>
+<status status="PASS" start="2025-02-28T13:05:25.575612" elapsed="17.771768"/>
 </suite>
 <statistics>
 <total>
