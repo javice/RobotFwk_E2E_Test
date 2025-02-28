@@ -11,8 +11,8 @@ jobs:
     steps:
     - name: Checkout code
       run: |
-        sudo chmod -R 777 /__w/_temp
-        actions/checkout@v2
+        git clone https://github.com/javice/RobotFwk_E2E_Test
+        cd RobotFwk_E2E_Test
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
