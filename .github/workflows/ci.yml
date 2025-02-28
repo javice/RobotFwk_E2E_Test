@@ -19,7 +19,7 @@ jobs:
     - name: Run tests
       run: robot -r ./reports tests/avis_navigation.robot
     - name: Upload test reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: test-reports
         path: reports/
