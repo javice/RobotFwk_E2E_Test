@@ -4,7 +4,6 @@ Resource         ../resources/AvisPage.robot
 
 
 Suite Setup    Setup Browser 
-#Open Browser    about:blank    chrome    options=add_argument("--user-data-dir=/tmp/chrome-user-data")
 Suite Teardown   Close All Browsers
 
 *** Variables ***
@@ -15,7 +14,7 @@ ${NAVIGATION_LINKS}    xpath=//nav[contains(@class, 'link-list')]//a
 Setup Browser
     ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium
     Call Method    ${options}    add_argument    --no-sandbox
-    Call Method    ${options}    add_argument    --headless
+    #Call Method    ${options}    add_argument    --headless
     Open Browser    about:blank    chrome    options=${options}
     Delete All Cookies
     #${user_data_dir}=    Evaluate    __import__('tempfile').mkdtemp()    modules=tempfile
