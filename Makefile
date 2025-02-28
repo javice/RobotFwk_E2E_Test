@@ -9,7 +9,7 @@ RESET=\033[0m
 
 
 # Comandos
-.PHONY: install test clean check 
+.PHONY: install test test_actions clean check 
 
 all: install check test clean
 	
@@ -20,6 +20,10 @@ install:
 test:
 	@echo "$(CYAN)Ejecutando pruebas $(BINARY_NAME)$(RESET)" 
 	robot -r ./reports tests/avis_navigation.robot
+
+test_actions:
+	@echo "$(CYAN)Ejecutando pruebas MODO HEADLESS $(BINARY_NAME)$(RESET)" 
+	robot -r ./reports --variable BROWSER:chrome --variable BROWSER_OPTIONS:"--headless" tests/
 
 clean:
 	@echo "$(CYAN)Limpiando $(BINARY_NAME)$(RESET)"
