@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Checkout code
       run: |
-        chmod -R 777 /__w/_temp
+        sudo chmod -R 777 /__w/_temp
         actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
