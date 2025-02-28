@@ -6,28 +6,31 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-        image: selenium/standalone-chrome
-
+      image: selenium/standalone-chrome
     steps:
-    - name: Checkout code
-      run: |
-        git clone https://github.com/javice/RobotFwk_E2E_Test
-        cd RobotFwk_E2E_Test
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run tests
-      run: |
-        robot -r ./reports tests/avis_navigation.robot
-    - name: Upload test reports
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-reports
-        path: reports/
-        if-no-files-found: 'warn'
-        retention-days: 10
+      - name: Install git
+        run: |
+          apt-get update
+          apt-get install -y git
+      - name: Checkout code
+        run: |
+          git clone https://github.com/javice/RobotFwk_E2E_Test
+          cd RobotFwk_E2E_Test
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          robot -r ./reports tests/avis_navigation.robot
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports/
+          if-no-files-found: 'warn'
+          retention-days: 10
