@@ -1,11 +1,11 @@
 name: RobotFmk CI
 
 on:
-    push:
-      branches: [ "main" ]
-    pull_request:
-      branches: [ "main" ]
-  
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
   build:
 
@@ -18,3 +18,16 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+    - name: Run tests
+      run: |
+        # Instalar dependencias de testing
+        pip install -r requirements.txt
+        # Ejecutar tests
+        robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080']}" tests/avis_navigation.robot
+    - name: Upload test reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: reports/
+        if-no-files-found: 'warn'
+        retention-days: 30
