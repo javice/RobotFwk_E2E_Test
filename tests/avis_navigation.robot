@@ -15,6 +15,8 @@ Setup Browser
     ${unique_dir}=    Evaluate    '/tmp/chrome-user-data-' + str(uuid.uuid4())    uuid
     ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium
     ${options.add_argument}=    Set Variable    --user-data-dir=${unique_dir}
+    ${options.add_argument}=    Set Variable    --no-sandbox
+    ${options.add_argument}=    Set Variable    --headless
     Open Browser    about:blank    chrome    options=${options}
 
 Navigate To Popular Locations
