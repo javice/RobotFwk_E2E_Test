@@ -21,4 +21,4 @@ jobs:
       run: make check
 
     - name: Run test
-      run: make test --variable USER_DATA_DIR:$(mktemp -d)
+      run: robot -r ./reports --variable USER_DATA_DIR:$(mktemp -d) tests/avis_navigation.robot
