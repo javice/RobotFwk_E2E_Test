@@ -15,7 +15,7 @@ Setup Browser
     ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium
     ${options.add_argument}=    Set Variable    --no-sandbox
     ${options.add_argument}=    Set Variable    --headless
-    ${options.add_argument}=    Set Variable    --temp-profile
+    ${options.add_argument}=    Set Variable    --incognito
     Open Browser    about:blank    chrome    options=${options}
 
 Navigate To Popular Locations
