@@ -13,9 +13,7 @@ ${NAVIGATION_LINKS}    xpath=//nav[contains(@class, 'link-list')]//a
 
 *** Keywords ***
 Setup Browser
-    ${user_data_dir}=    Evaluate    __import__('tempfile').mkdtemp()    modules=tempfile
     ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium
-    Call Method    ${options}    add_argument    --user-data-dir=${user_data_dir}
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --headless
     Open Browser    about:blank    chrome    options=${options}
