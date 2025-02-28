@@ -3,7 +3,7 @@ Documentation    Avis Vehicle Search Tests
 Resource         ../resources/AvisPage.robot
 
 
-Suite Setup      Open Browser    about:blank    chrome
+Suite Setup      Open Browser    about:blank    chrome    options=add_argument("--user-data-dir=/tmp/chrome-user-data")
 Suite Teardown   Close All Browsers
 
 *** Variables ***
