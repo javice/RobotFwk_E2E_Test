@@ -5,14 +5,12 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+        image: selenium/standalone-chrome
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Setup Chrome
-      run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -23,8 +21,6 @@ jobs:
         pip install -r requirements.txt
     - name: Run tests
       run: |
-        export CHROME_BIN=/usr/bin/chromium-browser
-        export CHROME_USER_DATA_DIR=/tmp/chrome-user-data
         robot -r ./reports tests/avis_navigation.robot
     - name: Upload test reports
       uses: actions/upload-artifact@v4
