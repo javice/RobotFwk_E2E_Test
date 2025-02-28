@@ -10,7 +10,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      run: |
+        chmod -R 777 /__w/_temp
+        actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
