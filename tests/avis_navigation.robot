@@ -9,12 +9,14 @@ Suite Teardown   Close All Browsers
 
 *** Variables ***
 ${NAVIGATION_LINKS}    xpath=//nav[contains(@class, 'link-list')]//a
-${CHROME_USER_DATA_DIR}    /tmp/chrome-user-data
+#${CHROME_USER_DATA_DIR}    /tmp/chrome-user-data
 
 *** Keywords ***
 Setup Browser
+    ${user_data_dir}=    Evaluate    __import__('tempfile').mkdtemp()    modules=tempfile
     ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium
-    ${options.add_argument}=    Set Variable    --user-data-dir=${CHROME_USER_DATA_DIR}
+    #${options.add_argument}=    Set Variable    --user-data-dir=${CHROME_USER_DATA_DIR}
+    Call Method    ${options}    add_argument    --user-data-dir=${user_data_dir}
     ${options.add_argument}=    Set Variable    --no-sandbox
     ${options.add_argument}=    Set Variable    --headless
     Open Browser    about:blank    chrome    options=${options}
