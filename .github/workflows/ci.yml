@@ -23,7 +23,8 @@ jobs:
 
       - name: Run tests
         run: |
-          robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080']}" tests/avis_navigation.robot
+          mkdir -p /tmp/unique-user-data-dir
+          robot -r ./reports -v BROWSER:chrome --v BROWSER_OPTS:"--user-data-dir=/tmp/unique-user-data-dir" -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080']}" tests/avis_navigation.robot
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
