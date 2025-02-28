@@ -9,9 +9,9 @@ RESET=\033[0m
 
 
 # Comandos
-.PHONY: install test clean check distcheck
+.PHONY: install test clean check 
 
-all: install check distcheck test clean
+all: install check test clean
 	
 install:
 	@echo "$(CYAN)Instalando dependencias $(BINARY_NAME)$(RESET)"
@@ -28,7 +28,3 @@ clean:
 check:
 	@echo "$(CYAN)Comprobando dependencias $(BINARY_NAME)$(RESET)"
 	pip check
-
-distcheck:
-	@echo "$(CYAN)Comprobando distribución $(BINARY_NAME)$(RESET)"
-	python setup.py check --restructuredtext
