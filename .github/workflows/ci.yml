@@ -23,7 +23,7 @@ jobs:
         # Instalar dependencias de testing
         pip install -r requirements.txt
         # Ejecutar tests
-        robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080']}" tests/avis_navigation.robot
+        robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080', '--user-data-dir=/tmp/chrome-user-data']}" tests/avis_navigation.robot
     - name: Upload test reports
       uses: actions/upload-artifact@v4
       with:
