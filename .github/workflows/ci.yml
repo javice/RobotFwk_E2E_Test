@@ -8,6 +8,14 @@ jobs:
       steps:
         - name: Checkout repository
           uses: actions/checkout@v2
+        - name: Set up Chrome
+          uses: browser-actions/setup-chrome@v1
+          with:
+            chrome-version: latest
+        - name: Set up WebDriver
+          run: |
+            npm install selenium-webdriver@latest
+            npm install chromedriver@latest
         - name: Set up Python
           uses: actions/setup-python@v2
           with:
