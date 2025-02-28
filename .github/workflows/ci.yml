@@ -1,43 +1,30 @@
-name: Avis Robot Framework Test CI
+name: Makefile CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
-  schedule:
-    - cron: 0 0 * * *
+    branches: [ "main" ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$(google-chrome --version | grep -oP '\d+\.\d+\.\d+' | cut -d '.' -f 1))
-          wget -q https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip -d /usr/local/bin/
-          pip install -r requirements.txt
+    - name: configure
+      run: ./configure
 
-      - name: Run tests
-        run: |
-          xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920,1080']}" tests/avis_navigation.robot
+    - name: Install dependencies
+      run: make install
 
-      - name: Upload test reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: reports/
-          if-no-files-found: 'warn'
-          retention-days: 30
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
+      
+    - name: Run test
+      run: make test
