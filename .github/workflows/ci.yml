@@ -12,7 +12,7 @@ jobs:
     - name: Setup Chrome
       run: |
           sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y chromium-browser
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -22,7 +22,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run tests
-      run: robot -r ./reports tests/avis_navigation.robot
+      run: |
+        export CHROME_BIN=/usr/bin/chromium-browser
+        robot -r ./reports tests/avis_navigation.robot
     - name: Upload test reports
       uses: actions/upload-artifact@v4
       with:
