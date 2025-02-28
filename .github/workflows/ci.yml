@@ -12,6 +12,12 @@ jobs:
           uses: browser-actions/setup-chrome@v1
           with:
             chrome-version: latest
+        - name: Update ChromeDriver
+          run: |
+            wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/local/bin/
+            sudo chmod +x /usr/local/bin/chromedriver
         - name: Set up WebDriver
           run: |
             npm install selenium-webdriver@latest
