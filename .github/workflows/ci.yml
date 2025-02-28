@@ -17,19 +17,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Chromium
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
-
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
       - name: Run tests
         run: |
-          mkdir -p /tmp/unique-user-data-dir
-          robot -r ./reports -v BROWSER:chromium -v BROWSER_OPTS:"--user-data-dir=/tmp/unique-user-data-dir" -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920,1080']}" tests/avis_navigation.robot
+          xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920,1080']}" tests/avis_navigation.robot
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
