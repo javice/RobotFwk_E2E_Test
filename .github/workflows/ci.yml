@@ -3,41 +3,48 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v2
-        - name: Set up Chrome
-          uses: browser-actions/setup-chrome@v1
-          with:
-            chrome-version: latest
-        - name: Update ChromeDriver
-          run: |
-            wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
-            unzip chromedriver_linux64.zip
-            sudo mv chromedriver /usr/local/bin/
-            sudo chmod +x /usr/local/bin/chromedriver
-        - name: Set up WebDriver
-          run: |
-            npm install selenium-webdriver@latest
-            npm install chromedriver@latest
-        - name: Set up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: '3.x'
-        - name: Install dependencies
-          run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-        - name: Run tests
-          run: |
-            robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080']}" tests/avis_navigation.robot
-          
-        - name: Upload test reports
-          uses: actions/upload-artifact@v4
-          with:
-            name: test-reports
-            path: reports/
-            if-no-files-found: 'warn'
-            retention-days: 10
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: latest
+
+      - name: Update ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          wget https://chromedriver.storage.googleapis.com/${CHROME_VERSION}/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+
+      - name: Set up WebDriver
+        run: |
+          npm install selenium-webdriver@latest
+          npm install chromedriver@latest
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080']}" tests/avis_navigation.robot
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports/
+          if-no-files-found: 'warn'
+          retention-days: 10
