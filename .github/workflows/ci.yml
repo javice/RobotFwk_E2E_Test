@@ -14,9 +14,7 @@ jobs:
           sudo apt-get install -y git
       - name: Checkout code
         run: |
-          mkdir -p RobotFwk_E2E_Test
-          cd RobotFwk_E2E_Test
-          git clone https://github.com/javice/RobotFwk_E2E_Test
+          git clone --depth 1 https://github.com/javice/RobotFwk_E2E_Test
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
