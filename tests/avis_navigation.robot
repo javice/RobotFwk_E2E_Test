@@ -3,13 +3,20 @@ Documentation    Avis Vehicle Search Tests
 Resource         ../resources/AvisPage.robot
 
 
-Suite Setup      Open Browser    about:blank    chrome    options=add_argument("--user-data-dir=/tmp/chrome-user-data")
+Suite Setup    Setup Browser 
+#Open Browser    about:blank    chrome    options=add_argument("--user-data-dir=/tmp/chrome-user-data")
 Suite Teardown   Close All Browsers
 
 *** Variables ***
 ${NAVIGATION_LINKS}    xpath=//nav[contains(@class, 'link-list')]//a
 
 *** Keywords ***
+Setup Browser
+    ${unique_dir}=    Evaluate    '/tmp/chrome-user-data-' + str(uuid.uuid4())    uuid
+    ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium
+    ${options.add_argument}=    Set Variable    --user-data-dir=${unique_dir}
+    Open Browser    about:blank    chrome    options=${options}
+
 Navigate To Popular Locations
     [Arguments]    ${location}
     ${elements}=    Get WebElements    ${NAVIGATION_LINKS}
