@@ -13,7 +13,8 @@ ${HEADLESS}            ${False}
 Setup Browser
     ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium
     Call Method    ${options}    add_argument    --no-sandbox
-    Run Keyword If    '${HEADLESS}' == 'True'    Call Method    ${options}    add_argument    --headless
+    Call Method    ${options}    add_argument    --headless
+    # Run Keyword If    '${HEADLESS}' == 'True'    Call Method    ${options}    add_argument    --headless
     Open Browser    about:blank    chrome    options=${options}
     Delete All Cookies
 
