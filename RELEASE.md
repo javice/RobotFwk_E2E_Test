@@ -42,4 +42,4 @@ Esta es la primera versión estable del proyecto Avis Robot Framework Test. Se h
 
 ## Notas de actualización
 
-* Para actualizar a esta versión, simplemente clona el repositorio y ejecuta las pruebas con el comando `robot -r ./reports tests/avis_navigation.robot`
+* Para actualizar a esta versión, simplemente clona el repositorio y ejecuta las pruebas con el comando `robot -r ./reports tests/avis_navigation.robot
