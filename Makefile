@@ -23,9 +23,6 @@ test:
 
 test_actions:
 	@echo "$(CYAN)Ejecutando pruebas MODO HEADLESS $(BINARY_NAME)$(RESET)" 
-	# HEADLESS=True robot -r ./reports tests/avis_navigation.robot
-	# HEADLESS=True 
-	# robot -r ./reports --variable BROWSER:chrome --variable BROWSER_OPTIONS:"--headless" tests/
 	robot -r ./reports --variable HEADLESS:True tests/avis_navigation.robot
 
 clean:

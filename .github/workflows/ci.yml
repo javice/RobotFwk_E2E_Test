@@ -24,8 +24,6 @@ jobs:
         pip install -r requirements.txt
         # Ejecutar tests
         make test_actions
-        #robot -r ./reports --variable BROWSER:chrome --variable BROWSER_OPTIONS:"--headless" tests/
-        # robot -r ./reports -v BROWSER:chrome -v CHROME_OPTIONS:"{'args': ['--headless', '--disable-gpu', '--window-size=1920,1080', '--user-data-dir=/tmp/chrome-user-data']}" tests/avis_navigation.robot
     - name: Upload test reports
       uses: actions/upload-artifact@v4
       with:
