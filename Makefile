@@ -2,7 +2,7 @@
 # Makefile
 
 # Variables
-
+BINARY_NAME=Robot-Framework_E2E_Tests
 # Colores para la salida en consola
 CYAN=\033[0;36m
 RESET=\033[0m
@@ -23,7 +23,7 @@ test:
 
 test_actions:
 	@echo "$(CYAN)Ejecutando pruebas MODO HEADLESS $(BINARY_NAME)$(RESET)" 
-	robot -r ./reports --variable BROWSER:chrome --variable BROWSER_OPTIONS:"--headless" tests/
+	robot -r ./reports --variable HEADLESS:True tests/avis_navigation.robot
 
 clean:
 	@echo "$(CYAN)Limpiando $(BINARY_NAME)$(RESET)"
